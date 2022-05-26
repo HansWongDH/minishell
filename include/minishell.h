@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/05/26 16:25:45 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/05/26 21:20:38 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int	check_quote(char *s, int *i, int c);
 int	check_command(char	*s, int *i, int c);
 char	**split_token(char *s, int size);
 int	is_command(char c);
+int	syntax_checking(char **s);
 
 #endif

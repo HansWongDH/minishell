@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:46:16 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/05/26 17:00:57 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/05/26 18:07:02 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,15 @@ int	is_command(char c)
 
 int	check_command(char	*s, int *i, int c)
 {
-	if (c == '|' && is_command(s[*i + 1]))
+	int	len;
+
+	len = 1;
+	if ((c == '>' || c == '<') && s[*i + 1] == c)
+	{
+		(*i)++;
+		len++;
+	}
+	if (is_command(s[*i + 1]))
 		return (-1);
-	if (c == '>' && (s[*i + 1] == '|' || s[*i + 1] == '<'))
-		return (-1);
-	if (c == '<' && (s[*i + 1] == '|' || s[*i + 1] == '>'))
-		return (-1);
-	return (1);
+	return (len);
 }

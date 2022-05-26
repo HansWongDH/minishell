@@ -6,7 +6,7 @@
 #    By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/12 18:02:33 by wding-ha          #+#    #+#              #
-#    Updated: 2022/05/23 15:20:49 by wding-ha         ###   ########.fr        #
+#    Updated: 2022/05/26 21:21:16 by wding-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ LEX_DIR			= src/lexer/
 ##############
 
 S_SRCS			= $(SRC_DIR)main.c
-S_LEX			= $(LEX_DIR)lex_init.c $(LEX_DIR)lex_utils.c
+S_LEX			= $(LEX_DIR)lex_init.c $(LEX_DIR)lex_utils.c $(LEX_DIR)lex_args.c
 OBJS			= $(S_SRCS:.c=.o) $(S_LEX:.c=.o)
 
 ##########

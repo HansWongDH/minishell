@@ -6,13 +6,11 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/05/26 17:01:07 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/05/26 21:23:50 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
 
 int	main(void)
 {
@@ -30,5 +28,6 @@ int	main(void)
 		j = 0;
 		while (token[j])
 			printf("%s \n", token[j++]);
+		printf("syntax checking %d\n", syntax_checking(token));
 	}
 }
