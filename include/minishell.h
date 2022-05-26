@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/05/23 15:22:02 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:25:45 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 
 typedef struct s_data {
 	char	**input;
+	int		red;
+	int		pipe;
+	int		heredoc;
 }	t_data;
 
 typedef struct s_token {
@@ -30,6 +33,8 @@ typedef struct s_token {
 
 int	token_length(char *s);
 int	check_quote(char *s, int *i, int c);
+int	check_command(char	*s, int *i, int c);
 char	**split_token(char *s, int size);
+int	is_command(char c);
 
 #endif
