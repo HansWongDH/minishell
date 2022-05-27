@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:13 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/05/26 21:06:49 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:55:08 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static int	is_del(char c)
 	return (0);
 }
 
-static int	is_args(char c)
+int	is_args(char c)
 {
-	if (!is_del(c) && !is_command(c))
+	if (!is_del(c) && !is_symbol(c))
 		return (1);
 	return (0);
 }
@@ -44,9 +44,9 @@ int	token_length(char *s)
 	{
 		if (is_quote(s[i]) && check_quote(s, &i, s[i]) < 0)
 			return (-1);
-		if (is_command(s[i]))
+		if (is_symbol(s[i]))
 		{
-			if (check_command(s, &i, s[i]) < 0)
+			if (check_symbol(s, &i, s[i]) < 0)
 				return (-1);
 			else
 				len++;
@@ -56,18 +56,6 @@ int	token_length(char *s)
 		i++;
 	}
 	return (len);
-}
-
-char	*split_command(char *s, int *i)
-{
-	char	*ret;
-	int		len;
-	int		start;
-
-	start = *i;
-	len = check_command(s, i, s[*i]);
-	ret = ft_substr(s, start, len);
-	return (ret);
 }
 
 char	**split_token(char *s, int size)
@@ -80,6 +68,8 @@ char	**split_token(char *s, int size)
 	i = 0;
 	len = 0;
 	ret = ft_calloc(sizeof(char *), size + 1);
+	if (!ret)
+		return (NULL);
 	while (len < size)
 	{
 		start = i;
@@ -89,8 +79,8 @@ char	**split_token(char *s, int size)
 			i++;
 		if (i - start > 0 && !is_args(s[i]))
 			ret[len++] = ft_substr(s, start, i - start);
-		if (is_command(s[i]))
-			ret[len++] = split_command(s, &i);
+		if (is_symbol(s[i]))
+			ret[len++] = split_symbol(s, &i);
 		i++;
 	}
 	return (ret);

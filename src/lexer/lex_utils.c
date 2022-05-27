@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:46:16 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/05/26 18:07:02 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:28:19 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ int	check_quote(char *s, int *i, int c)
 	return (-1);
 }
 
-int	is_command(char c)
+int	is_symbol(char c)
 {
 	if (c == '|' || c == '>' || c == '<')
 		return (1);
 	return (0);
 }
 
-int	check_command(char	*s, int *i, int c)
+int	check_symbol(char	*s, int *i, int c)
 {
 	int	len;
 
@@ -46,7 +46,20 @@ int	check_command(char	*s, int *i, int c)
 		(*i)++;
 		len++;
 	}
-	if (is_command(s[*i + 1]))
+	if (is_symbol(s[*i + 1]))
 		return (-1);
 	return (len);
 }
+
+char	*split_symbol(char *s, int *i)
+{
+	char	*ret;
+	int		len;
+	int		start;
+
+	start = *i;
+	len = check_symbol(s, i, s[*i]);
+	ret = ft_substr(s, start, len);
+	return (ret);
+}
+
