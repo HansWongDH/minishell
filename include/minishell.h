@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/05/27 20:14:49 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/05/28 15:33:15 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@
 # include <readline/history.h>
 # include "libft.h"
 
-# define OUTFILE 1
-# define DOUTFILE 2
-# define INFILE 3
-# define HEREDOC 4
-# define PIPE 5
+# define PIPE 1
+# define OUTFILE 2
+# define DOUTFILE 3
+# define INFILE 4
+# define HEREDOC 5
+
 
 typedef struct s_command {
 	char	**args;
@@ -36,7 +37,7 @@ typedef struct s_command {
 }	t_commands;
 
 typedef struct s_cmdlist {
-	struct s_command	*simple_command;
+	struct s_command	cmd;
 	struct s_cmdlist	*next;
 
 }	t_cmdlist;
@@ -48,6 +49,9 @@ int		check_symbol(char	*s, int *i, int c);
 char	**split_token(char *s, int size);
 int		is_symbol(char c);
 int		syntax_checking(char **s);
-t_commands	command_table_init(char **s);
+t_commands	command_table_init(char **s, int *i);
+int		parse_symbol(char *s);
+t_cmdlist	*cmdlist_init(char **s);
+void	free2d(char **s);
 
 #endif
