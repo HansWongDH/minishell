@@ -6,7 +6,7 @@
 #    By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/12 18:02:33 by wding-ha          #+#    #+#              #
-#    Updated: 2022/05/28 15:32:07 by wding-ha         ###   ########.fr        #
+#    Updated: 2022/06/01 21:22:33 by wding-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME			= minishell
 #######
 
 CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS			= -Wall -Wextra -Werror
 LFLAGS			= -L/usr/include -lreadline
 RM				= rm -f
 
@@ -34,6 +34,8 @@ LIBFT_DIR		= libs/libft
 LIB				= -L$(LIBFT_DIR) -lft
 SRC_DIR			= src/
 LEX_DIR			= src/lexer/
+PARS_DIR		= src/parser/
+ENV_DIR			= src/env/
 
 ##############
 #sSOURCE FILE#
@@ -41,7 +43,9 @@ LEX_DIR			= src/lexer/
 
 S_SRCS			= $(SRC_DIR)main.c
 S_LEX			= $(LEX_DIR)lex_init.c $(LEX_DIR)lex_utils.c $(LEX_DIR)lex_args.c $(LEX_DIR)lex_cmdlist.c
-OBJS			= $(S_SRCS:.c=.o) $(S_LEX:.c=.o)
+S_PARS			= $(PARS_DIR)pars_quote.c
+S_ENV			= $(ENV_DIR)env_expansion.c
+OBJS			= $(S_SRCS:.c=.o) $(S_LEX:.c=.o) $(S_PARS:.c=.o) $(S_ENV:.c=.o)
 
 ##########
 #COMMANDS#

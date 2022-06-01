@@ -6,13 +6,13 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:13 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/05/27 21:55:08 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:34:36 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	is_quote(char c)
+int	is_quote(char c)
 {
 	if (c == '\'' || c == '\"')
 		return (1);
@@ -68,15 +68,15 @@ char	**split_token(char *s, int size)
 	i = 0;
 	len = 0;
 	ret = ft_calloc(sizeof(char *), size + 1);
-	if (!ret)
-		return (NULL);
 	while (len < size)
 	{
 		start = i;
 		while (is_args(s[i]))
+		{
+			if (is_quote(s[i]) && check_quote(s, &i, s[i]) < 0)
+				return (NULL);
 			i++;
-		if (is_quote(s[i]) && check_quote(s, &i, s[i]) != -1)
-			i++;
+		}
 		if (i - start > 0 && !is_args(s[i]))
 			ret[len++] = ft_substr(s, start, i - start);
 		if (is_symbol(s[i]))

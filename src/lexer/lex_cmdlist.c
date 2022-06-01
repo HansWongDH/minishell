@@ -6,12 +6,11 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 13:22:58 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/05/28 15:30:06 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/01 13:57:37 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 t_cmdlist	*ft_newcmd(t_commands cmd)
 {
@@ -77,9 +76,11 @@ t_cmdlist	*cmdlist_init(char **s)
 
 	i = 0;
 	list = NULL;
+	if (syntax_checking(s) < 0)
+		return (NULL);
 	while (s[i])
 	{
-		cmd = command_table_init(s, &i);
+		command_table_init(s, &i, struct_init(&cmd));
 		ft_cmdadd_back(&list, ft_newcmd(cmd));
 		if (parse_symbol(s[i]) == PIPE)
 			i++;

@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:46:16 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/05/28 15:50:04 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:01:45 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,3 @@ char	*split_symbol(char *s, int *i)
 	ret = ft_substr(s, start, len);
 	return (ret);
 }
-

@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/05/28 15:33:15 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/01 21:23:48 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_command {
 typedef struct s_cmdlist {
 	struct s_command	cmd;
 	struct s_cmdlist	*next;
-
 }	t_cmdlist;
 
 int		token_length(char *s);
@@ -49,9 +48,12 @@ int		check_symbol(char	*s, int *i, int c);
 char	**split_token(char *s, int size);
 int		is_symbol(char c);
 int		syntax_checking(char **s);
-t_commands	command_table_init(char **s, int *i);
+t_commands	*struct_init(t_commands *cmd);
+int		is_quote(char c);
+void	command_table_init(char **s, int *i, t_commands *cmd);
 int		parse_symbol(char *s);
 t_cmdlist	*cmdlist_init(char **s);
 void	free2d(char **s);
-
+void	quote_treatment(char **s);
+char	*env_extract(char *s);
 #endif
