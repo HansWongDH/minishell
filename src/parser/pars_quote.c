@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:42:26 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/03 21:46:22 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/04 03:06:37 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,16 @@ void	ft_strjoin2d(char **s, char **str)
 	while (str[i])
 	{
 		temp = *s;
-		*s = ft_strjoin(temp, str[i]);
-		free(temp);
+		*s = ft_strjoinfree(temp, str[i]);
 		i++;
 	}
-	free2d(str);
+	free(str);
 }
 
 char	*quote_extract(char *s)
 {
 	char	*ret;
 	char	**temp;
-	char	*str;
 	int		i;
 	int		start;
 
@@ -44,9 +42,7 @@ char	*quote_extract(char *s)
 		if (is_quote(s[i]))
 		{
 			check_quote(s, &i, s[i]);
-			str = ft_substr(s, start, i + 1 - start);
-			temp = ft_split(str, s[i]);
-			free(str);
+			temp = ft_splitfree(ft_substr(s, start, i + 1 - start), s[i]);
 			ft_strjoin2d(&ret, temp);
 			if (s[i] == '\"')
 				ret = env_extract(ret, 1);
@@ -54,8 +50,7 @@ char	*quote_extract(char *s)
 		}
 		i++;
 	}
-	if (s[start])
-		ret = ft_strjoin(ret, (s + start));
+	ret = ft_strjoinfree(ret, ft_substr(s, start, start - i));
 	return (ret);
 }
 

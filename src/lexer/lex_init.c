@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:13 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/01 15:34:36 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/04 04:06:04 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	**split_token(char *s, int size)
 		while (is_args(s[i]))
 		{
 			if (is_quote(s[i]) && check_quote(s, &i, s[i]) < 0)
-				return (NULL);
+				return (token_error(ret));
 			i++;
 		}
 		if (i - start > 0 && !is_args(s[i]))

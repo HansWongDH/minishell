@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/03 21:42:44 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/04 04:05:34 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,15 @@
 # define INFILE 4
 # define HEREDOC 5
 
-
+/*
+Simple command table
+args	-token in 2D char array
+num		-number of argument
+infile	-filename for infile
+outfile	-filename for outfile
+sym_in	-type of infile redic
+sym_out	-type of outfile redic
+*/
 typedef struct s_command {
 	char	**args;
 	int		num;
@@ -36,27 +44,48 @@ typedef struct s_command {
 	int		sym_out;
 }	t_commands;
 
+/*command group in linkedlist form*/
 typedef struct s_cmdlist {
 	struct s_command	cmd;
 	struct s_cmdlist	*next;
 }	t_cmdlist;
 
-int		token_length(char *s);
-char	*split_symbol(char *s, int *i);
-int		check_quote(char *s, int *i, int c);
-int		check_symbol(char	*s, int *i, int c);
-char	**split_token(char *s, int size);
-int		is_symbol(char c);
-int		syntax_checking(char **s);
+/*Splitting string into 2D array token*/
+int			token_length(char *s);
+char		*split_symbol(char *s, int *i);
+char		**split_token(char *s, int size);
+
+/*Syntax checking for input string*/
+int			is_quote(char c);
+int			is_symbol(char c);
+int			check_quote(char *s, int *i, int c);
+int			check_symbol(char *s, int *i, int c);
+
+/*Syntax checking for token after splitting*/
+int			syntax_checking(char **s);
+int			parse_symbol(char *s);
+
+/*Initialize command table */
 t_commands	*struct_init(t_commands *cmd);
-int		is_quote(char c);
-void	command_table_init(char **s, int *i, t_commands *cmd);
-int		parse_symbol(char *s);
+void		command_table_init(char **s, int *i, t_commands *cmd);
 t_cmdlist	*cmdlist_init(char **s);
-void	free2d(char **s);
-void	quote_treatment(char **s);
-char	*env_extract(char *s, int qt);
-void	env_treatment(char **s);
-void	cmdlist_expansion(t_cmdlist *list);
+
+/*Utility function : free memory*/
+void		free2d(char **s);
+char		*ft_strjoinfree(char *s1, char *s2);
+char		**ft_splitfree(char *s, char c);
+
+/*Quote removal and expansion of environmental variable*/
+void		quote_treatment(char **s);
+void		env_treatment(char **s);
+char		*env_extract(char *s, int qt);
+void		cmdlist_expansion(t_cmdlist *list);
+
+/*lexer initalization*/
+t_cmdlist	*lexer_init(char *s);
+
+/*For error handling*/
+int			error_msg(int i, char *s);
+void		*token_error(char **s);
 
 #endif

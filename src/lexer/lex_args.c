@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:32:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/01 13:57:13 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/04 03:36:34 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int	syntax_checking(char **s)
 	while (s[i])
 	{
 		if (parse_symbol(s[i]) > 1 && (parse_symbol(s[i + 1]) || !s[i + 1]))
-			return (-1);
+			return (error_msg(-1, "Syntax error: redirection\n"));
 		if (parse_symbol(s[i]) == PIPE)
 		{
 			if (parse_symbol(s[i + 1]) == PIPE || !s[i + 1])
-				return (-1);
+				return (error_msg(-1, "Syntax error: pipe\n"));
 		}
 		i++;
 	}

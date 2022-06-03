@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:16 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/03 21:35:24 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/04 03:08:39 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,18 @@ char	*env_isquote(char *s)
 	i = 0;
 	start = i;
 	ret = ft_calloc(1, 1);
-	while(s[i])
+	while (s[i])
 	{
 		if (is_quote(s[i]))
 		{
 			temp = ft_substr(s, start, i - start);
-			ret = ft_strjoin(ret, temp);
-			ret = ft_strjoin(ret, env_addquote(s[i]));
+			ret = ft_strjoinfree(ret, temp);
+			ret = ft_strjoinfree(ret, env_addquote(s[i]));
 			start = i + 1;
 		}
 		i++;
 	}
-	if (start != i)
-		ret = ft_strjoin(ret, (s + start));
+	ret = ft_strjoinfree(ret, ft_substr(s, start, i - start));
 	return (ret);
 }
 
@@ -71,12 +70,14 @@ char	*env_fetch(char *s, int *i, int qt)
 	while (ft_isalnum(s[*i]))
 		(*i)++;
 	temp = ft_substr(s, start, *i - start);
-	ret = getenv(temp);
-	if (qt == 0 && (ft_strchr(ret, '\'') ||ft_strchr(ret, '\"')))
-		ret = env_isquote(ret);
+	ret = (getenv(temp));
+	free(temp);
 	if (!ret)
 		ret = ft_calloc(1, 1);
-	free(temp);
+	else
+		ret = ft_strdup(ret);
+	if (qt == 0 && (ft_strchr(ret, '\'') || ft_strchr(ret, '\"')))
+		ret = env_isquote(ret);
 	return (ret);
 }
 
@@ -84,7 +85,6 @@ char	*env_extract(char *s, int qt)
 {
 	int		i;
 	int		start;
-	char	*temp;
 	char	*ret;
 
 	i = 0;
@@ -94,20 +94,19 @@ char	*env_extract(char *s, int qt)
 	{
 		if (qt == 0 && is_quote(s[i]) && check_quote(s, &i, s[i]))
 			i++;
-		if (s[i] == '$')
+		else if (s[i] == '$')
 		{	
 			if (start != i)
-				ret = ft_strjoin(ret, ft_substr(s, start, i - start));
+				ret = ft_strjoinfree(ret, ft_substr(s, start, i - start));
 			i++;
-			temp = env_fetch(s, &i, qt);
-			ret = ft_strjoin(ret, temp);
+			ret = ft_strjoinfree(ret, env_fetch(s, &i, qt));
 			start = i;
 		}
 		else
 			i++;
 	}
-	if (start != i)
-		ret = ft_strjoin(ret, (s + start));
+	ret = ft_strjoinfree(ret, ft_substr(s, start, i - start));
+	free(s);
 	return (ret);
 }
 
@@ -122,7 +121,6 @@ void	env_treatment(char **s)
 		if (ft_strchr(s[i], '$'))
 		{
 			temp = env_extract(s[i], 0);
-			free(s[i]);
 			s[i] = ft_strdup(temp);
 			free(temp);
 		}

@@ -1,43 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars_cmdline.c                                     :+:      :+:    :+:   */
+/*   pars_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 21:39:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/04 03:20:37 by wding-ha         ###   ########.fr       */
+/*   Created: 2022/06/04 03:15:11 by wding-ha          #+#    #+#             */
+/*   Updated: 2022/06/04 04:05:41 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	cmdlist_expansion(t_cmdlist *list)
+int	error_msg(int i, char *s)
 {
-	t_cmdlist	*temp;
-
-	temp = list;
-	while (temp)
-	{
-		env_treatment(temp->cmd.args);
-		quote_treatment(temp->cmd.args);
-		temp = temp->next;
-	}
+	ft_putstr_fd(s, 2);
+	return (i);
 }
 
-t_cmdlist	*lexer_init(char *s)
+void	*token_error(char **s)
 {
-	int			i;
-	char		**token;
-	t_cmdlist	*list;
-
-	i = token_length(s);
-	if (i < 0)
-		return (NULL);
-	token = split_token(s, i);
-	if (!token)
-		return (NULL);
-	list = cmdlist_init(token);
-	cmdlist_expansion(list);
-	return (list);
+	free2d(s);
+	return (NULL);
 }

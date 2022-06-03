@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 13:22:58 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/01 13:57:37 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/04 04:04:56 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_cmdlist	*cmdlist_init(char **s)
 	i = 0;
 	list = NULL;
 	if (syntax_checking(s) < 0)
-		return (NULL);
+		return (token_error(s));
 	while (s[i])
 	{
 		command_table_init(s, &i, struct_init(&cmd));

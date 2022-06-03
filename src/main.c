@@ -6,28 +6,11 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/03 21:47:52 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/04 04:08:03 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_cmdlist	*lexer_init(char *s)
-{
-	int			i;
-	char		**token;
-	t_cmdlist	*list;
-
-	i = token_length(s);
-	if (i < 0)
-		return (NULL);
-	token = split_token(s, i);
-	if (!token)
-		return (NULL);
-	list = cmdlist_init(token);
-	cmdlist_expansion(list);
-	return (list);
-}
 
 int	main(void)
 {
@@ -41,6 +24,7 @@ int	main(void)
 		str = readline("Minishell⌲ ");
 		add_history(str);
 		list = lexer_init(str);
+		free(str);
 		head = list;
 		while (list)
 		{
@@ -59,11 +43,12 @@ int	main(void)
 			t_cmdlist	*temp;
 
 			free2d(head->cmd.args);
+			free(head->cmd.infile);
+			free(head->cmd.outfile);
 			temp = head;
 			head = head->next;
 			free(temp);
 		}
-		system("leaks minishell");
 		return (0);
 	}
 }
