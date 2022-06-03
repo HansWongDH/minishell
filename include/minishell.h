@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/01 21:23:48 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/03 21:42:44 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,8 @@ int		parse_symbol(char *s);
 t_cmdlist	*cmdlist_init(char **s);
 void	free2d(char **s);
 void	quote_treatment(char **s);
-char	*env_extract(char *s);
+char	*env_extract(char *s, int qt);
+void	env_treatment(char **s);
+void	cmdlist_expansion(t_cmdlist *list);
+
 #endif

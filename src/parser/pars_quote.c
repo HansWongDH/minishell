@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:42:26 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/01 21:31:49 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/03 21:46:22 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,13 @@ char	*quote_extract(char *s)
 			free(str);
 			ft_strjoin2d(&ret, temp);
 			if (s[i] == '\"')
-				ret = env_extract(ret);
+				ret = env_extract(ret, 1);
 			start = i + 1;
 		}
 		i++;
 	}
+	if (s[start])
+		ret = ft_strjoin(ret, (s + start));
 	return (ret);
 }
 
