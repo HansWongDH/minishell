@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:42:26 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/04 03:06:37 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/04 15:00:22 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_strjoin2d(char **s, char **str)
 char	*quote_extract(char *s)
 {
 	char	*ret;
-	char	**temp;
+	char	*temp;
 	int		i;
 	int		start;
 
@@ -41,11 +41,11 @@ char	*quote_extract(char *s)
 	{
 		if (is_quote(s[i]))
 		{
-			check_quote(s, &i, s[i]);
-			temp = ft_splitfree(ft_substr(s, start, i + 1 - start), s[i]);
-			ft_strjoin2d(&ret, temp);
+			ret = ft_strjoinfree(ret, ft_substr(s, start, i - start));
+			temp = (ft_substr(s, i + 1, check_quote(s, &i, s[i])));
 			if (s[i] == '\"')
-				ret = env_extract(ret, 1);
+				temp = env_extract(temp, 1);
+			ret = ft_strjoinfree(ret, temp);
 			start = i + 1;
 		}
 		i++;
