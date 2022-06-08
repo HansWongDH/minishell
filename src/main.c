@@ -6,19 +6,22 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/04 11:38:37 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:25:21 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int	main(int ac, char **av, char **envp)
 {
 	char		*str;
 	int 		j;
+	int			i;
 	t_cmdlist	*list;
 	t_cmdlist	*head;
-
+	(void)ac;
+	(void)av;
+	g_env = envp;
 	while (1)
 	{
 		str = readline("Minishell⌲ ");
@@ -26,6 +29,9 @@ int	main(void)
 		list = lexer_init(str);
 		free(str);
 		head = list;
+		i = 0;
+		// while (g_env[i])
+		// 	printf("%s\n", g_env[i++]);
 		while (list)
 		{
 			j = 0;

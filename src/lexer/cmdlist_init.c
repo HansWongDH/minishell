@@ -1,31 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lex_args.c                                         :+:      :+:    :+:   */
+/*   cmdlist_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:32:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/04 03:36:34 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:46:03 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	parse_symbol(char *s)
-{
-	if (!ft_strcmp(s, ">"))
-		return (OUTFILE);
-	if (!ft_strcmp(s, ">>"))
-		return (DOUTFILE);
-	if (!ft_strcmp(s, "<"))
-		return (INFILE);
-	if (!ft_strcmp(s, "<<"))
-		return (HEREDOC);
-	if (!ft_strcmp(s, "|"))
-		return (PIPE);
-	return (0);
-}
 
 int	syntax_checking(char **s)
 {
@@ -100,4 +85,25 @@ void	command_table_init(char **s, int *i, t_commands *cmd)
 	}
 	cmd->num = *i - start;
 	cmd->args = ft_divide(s, cmd->num, start);
+}
+
+t_cmdlist	*cmdlist_init(char **s)
+{
+	int			i;
+	t_commands	cmd;
+	t_cmdlist	*list;
+
+	i = 0;
+	list = NULL;
+	if (syntax_checking(s) < 0)
+		return (token_error(s));
+	while (s[i])
+	{
+		command_table_init(s, &i, struct_init(&cmd));
+		ft_cmdadd_back(&list, ft_newcmd(cmd));
+		if (parse_symbol(s[i]) == PIPE)
+			i++;
+	}
+	free2d(s);
+	return (list);
 }

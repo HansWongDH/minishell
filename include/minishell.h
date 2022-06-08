@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/04 04:05:34 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:30:30 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define INFILE 4
 # define HEREDOC 5
 
+char	**g_env;
 /*
 Simple command table
 args	-token in 2D char array
@@ -42,6 +43,7 @@ typedef struct s_command {
 	int		sym_in;
 	char	*outfile;
 	int		sym_out;
+	char	*cmd;
 }	t_commands;
 
 /*command group in linkedlist form*/
@@ -70,6 +72,10 @@ t_commands	*struct_init(t_commands *cmd);
 void		command_table_init(char **s, int *i, t_commands *cmd);
 t_cmdlist	*cmdlist_init(char **s);
 
+/*Utility function for commandlist*/
+void		ft_cmdadd_back(t_cmdlist **lst, t_cmdlist *new);
+t_cmdlist	*ft_newcmd(t_commands cmd);
+
 /*Utility function : free memory*/
 void		free2d(char **s);
 char		*ft_strjoinfree(char *s1, char *s2);
@@ -79,6 +85,7 @@ char		**ft_splitfree(char *s, char c);
 void		quote_treatment(char **s);
 void		env_treatment(char **s);
 char		*env_extract(char *s, int qt);
+char		*ft_getenv(char *s);
 void		cmdlist_expansion(t_cmdlist *list);
 
 /*lexer initalization*/

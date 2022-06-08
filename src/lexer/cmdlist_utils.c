@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lex_cmdlist.c                                      :+:      :+:    :+:   */
+/*   cmdlist_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 13:22:58 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/04 04:04:56 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:35:22 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,17 @@ void	free2d(char **s)
 	}
 }
 
-t_cmdlist	*cmdlist_init(char **s)
+int	parse_symbol(char *s)
 {
-	int			i;
-	t_commands	cmd;
-	t_cmdlist	*list;
-
-	i = 0;
-	list = NULL;
-	if (syntax_checking(s) < 0)
-		return (token_error(s));
-	while (s[i])
-	{
-		command_table_init(s, &i, struct_init(&cmd));
-		ft_cmdadd_back(&list, ft_newcmd(cmd));
-		if (parse_symbol(s[i]) == PIPE)
-			i++;
-	}
-	free2d(s);
-	return (list);
+	if (!ft_strcmp(s, ">"))
+		return (OUTFILE);
+	if (!ft_strcmp(s, ">>"))
+		return (DOUTFILE);
+	if (!ft_strcmp(s, "<"))
+		return (INFILE);
+	if (!ft_strcmp(s, "<<"))
+		return (HEREDOC);
+	if (!ft_strcmp(s, "|"))
+		return (PIPE);
+	return (0);
 }

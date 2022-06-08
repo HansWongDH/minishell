@@ -6,26 +6,11 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:42:26 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/04 15:00:22 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:31:33 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_strjoin2d(char **s, char **str)
-{
-	int		i;
-	char	*temp;
-
-	i = 0;
-	while (str[i])
-	{
-		temp = *s;
-		*s = ft_strjoinfree(temp, str[i]);
-		i++;
-	}
-	free(str);
-}
 
 char	*quote_extract(char *s)
 {

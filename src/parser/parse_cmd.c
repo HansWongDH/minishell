@@ -1,23 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars_util.c                                        :+:      :+:    :+:   */
+/*   parse_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/04 02:23:26 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/08 13:28:28 by wding-ha         ###   ########.fr       */
+/*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
+/*   Updated: 2022/06/08 15:03:13 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_strjoinfree(char *s1, char *s2)
+char	*check_cmd(char **s)
 {
-	char	*ret;
+	int		i;
 
-	ret = ft_strjoin(s1, s2);
-	free(s1);
-	free(s2);
-	return (ret);
+	i = 0;
+	while (s[i])
+	{
+		if (parse_symbol(s[i]) > 1)
+			i = i + 2;
+		else
+			return (s[i]);
+	}
+	return (s[i]);
 }
+
+void	set_cmd(t_cmdlist *cmd)
+{
+	t_cmdlist	*lst;
+
+	lst = cmd;
+	while (lst)
+	{
+		lst->cmd.cmd = ft_strdup(check_cmd(lst->cmd.args));
+		lst = lst->next;
+	}
+}
+
+void	parse_cmd(t_cmdlist *cmd)
+{
+	if (ft_strcmp(cmd->cmd.cmd, "export")
+
+}
+
