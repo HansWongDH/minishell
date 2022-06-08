@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: echai <echai@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/08 14:25:21 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:13:00 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av, char **envp)
 {
 	char		*str;
 	int 		j;
-	int			i;
+	// int			i;
 	t_cmdlist	*list;
 	t_cmdlist	*head;
 	(void)ac;
@@ -29,7 +29,7 @@ int	main(int ac, char **av, char **envp)
 		list = lexer_init(str);
 		free(str);
 		head = list;
-		i = 0;
+		// i = 0;
 		// while (g_env[i])
 		// 	printf("%s\n", g_env[i++]);
 		while (list)
