@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/08 14:30:30 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/08 19:38:14 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define INFILE 4
 # define HEREDOC 5
 
-char	**g_env;
+t_list	*g_env;
 /*
 Simple command table
 args	-token in 2D char array
@@ -36,14 +36,17 @@ outfile	-filename for outfile
 sym_in	-type of infile redic
 sym_out	-type of outfile redic
 */
+
 typedef struct s_command {
-	char	**args;
+	char	**token;
 	int		num;
 	char	*infile;
 	int		sym_in;
 	char	*outfile;
 	int		sym_out;
 	char	*cmd;
+	t_list	*args;
+	char	**red;
 }	t_commands;
 
 /*command group in linkedlist form*/
@@ -87,10 +90,22 @@ void		env_treatment(char **s);
 char		*env_extract(char *s, int qt);
 char		*ft_getenv(char *s);
 void		cmdlist_expansion(t_cmdlist *list);
+void		set_cmd(t_cmdlist *cmd);
+void		parse_cmd(t_cmdlist *lst);
+void		env_build(char **envp);
 
 /*lexer initalization*/
 t_cmdlist	*lexer_init(char *s);
 
+/*built-in : export*/
+int			ft_envcmp(const char *s1, const char *s2);
+int			bin_export(t_commands cmd);
+
+/*built-in : echo*/
+int			bin_echo(t_commands cmd);
+
+/*built-in : env*/
+int			bin_env(t_commands cmd);
 /*For error handling*/
 int			error_msg(int i, char *s);
 void		*token_error(char **s);

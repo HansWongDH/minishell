@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:16 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/08 14:21:36 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/08 19:40:28 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ char	*env_fetch(char *s, int *i, int qt)
 		(*i)++;
 	temp = ft_substr(s, start, *i - start);
 	ret = (ft_getenv(temp));
+	if (!ret)
+		ret = ft_calloc(1, 1);
 	free(temp);
 	if (qt == 0 && (ft_strchr(ret, '\'') || ft_strchr(ret, '\"')))
 		ret = env_isquote(ret);

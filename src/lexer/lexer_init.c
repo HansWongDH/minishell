@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars_cmdline.c                                     :+:      :+:    :+:   */
+/*   lexer_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 21:39:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/04 03:20:37 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/08 17:07:29 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	cmdlist_expansion(t_cmdlist *list)
 	temp = list;
 	while (temp)
 	{
-		env_treatment(temp->cmd.args);
-		quote_treatment(temp->cmd.args);
+		env_treatment(temp->cmd.token);
+		quote_treatment(temp->cmd.token);
 		temp = temp->next;
 	}
 }
@@ -39,5 +39,6 @@ t_cmdlist	*lexer_init(char *s)
 		return (NULL);
 	list = cmdlist_init(token);
 	cmdlist_expansion(list);
+	set_cmd(list);
 	return (list);
 }
