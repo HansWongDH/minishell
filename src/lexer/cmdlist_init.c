@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:32:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/08 17:35:08 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:57:56 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	**ft_divide(char **s, int len, int i)
 	return (ret);
 }
 
-t_commands	*struct_init(t_commands *cmd)
+t_command	*struct_init(t_command *cmd)
 {
 	cmd->token = NULL;
 	cmd->infile = NULL;
@@ -62,7 +62,7 @@ t_commands	*struct_init(t_commands *cmd)
 	return (cmd);
 }
 
-void	command_table_init(char **s, int *i, t_commands *cmd)
+void	command_table_init(char **s, int *i, t_command *cmd)
 {
 	int			start;
 
@@ -92,7 +92,7 @@ void	command_table_init(char **s, int *i, t_commands *cmd)
 t_cmdlist	*cmdlist_init(char **s)
 {
 	int			i;
-	t_commands	cmd;
+	t_command	cmd;
 	t_cmdlist	*list;
 
 	i = 0;

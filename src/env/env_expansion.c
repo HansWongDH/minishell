@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:16 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/08 19:40:28 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/10 17:29:40 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,22 @@ char	*env_isquote(char *s)
 	return (ret);
 }
 
-char	*env_fetch(char *s, int *i, int qt)
+char	*env_fetch(char *s, int *i, int qt, int ex)
 {
 	char	*temp;
 	char	*ret;
 	int		start;
 
 	start = *i;
-	while (ft_isalnum(s[*i]))
+	if (ft_isalpha(s[*i]) || s[*i] == '_' || s[*i] == '?')
+	{
+		(*i)++;
+		if (s[*i - 1] == '?')
+			return (ft_itoa(ex));
+	}
+	else
+		return (ft_calloc(1, 1));
+	while (ft_isalnum(s[*i]) || s[*i] == '_')
 		(*i)++;
 	temp = ft_substr(s, start, *i - start);
 	ret = (ft_getenv(temp));
@@ -79,7 +87,7 @@ char	*env_fetch(char *s, int *i, int qt)
 	return (ret);
 }
 
-char	*env_extract(char *s, int qt)
+char	*env_extract(char *s, int qt, int ex)
 {
 	int		i;
 	int		start;
@@ -97,7 +105,7 @@ char	*env_extract(char *s, int qt)
 			if (start != i)
 				ret = ft_strjoinfree(ret, ft_substr(s, start, i - start));
 			i++;
-			ret = ft_strjoinfree(ret, env_fetch(s, &i, qt));
+			ret = ft_strjoinfree(ret, env_fetch(s, &i, qt, ex));
 			start = i;
 		}
 		else
@@ -108,7 +116,7 @@ char	*env_extract(char *s, int qt)
 	return (ret);
 }
 
-void	env_treatment(char **s)
+void	env_treatment(char **s, int ex)
 {
 	int		i;
 	char	*temp;
@@ -118,7 +126,7 @@ void	env_treatment(char **s)
 	{
 		if (ft_strchr(s[i], '$'))
 		{
-			temp = env_extract(s[i], 0);
+			temp = env_extract(s[i], 0, ex);
 			s[i] = ft_strdup(temp);
 			free(temp);
 		}

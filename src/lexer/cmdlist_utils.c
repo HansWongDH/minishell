@@ -6,13 +6,13 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 13:22:58 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/08 13:35:22 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:57:56 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_cmdlist	*ft_newcmd(t_commands cmd)
+t_cmdlist	*ft_newcmd(t_command cmd)
 {
 	t_cmdlist	*list;
 

@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/08 19:38:14 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/10 17:26:48 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_command {
 	char	*cmd;
 	t_list	*args;
 	char	**red;
-}	t_commands;
+}	t_command;
 
 /*command group in linkedlist form*/
 typedef struct s_cmdlist {
@@ -71,41 +71,46 @@ int			syntax_checking(char **s);
 int			parse_symbol(char *s);
 
 /*Initialize command table */
-t_commands	*struct_init(t_commands *cmd);
-void		command_table_init(char **s, int *i, t_commands *cmd);
+t_command	*struct_init(t_command *cmd);
+void		command_table_init(char **s, int *i, t_command *cmd);
 t_cmdlist	*cmdlist_init(char **s);
 
 /*Utility function for commandlist*/
 void		ft_cmdadd_back(t_cmdlist **lst, t_cmdlist *new);
-t_cmdlist	*ft_newcmd(t_commands cmd);
+t_cmdlist	*ft_newcmd(t_command cmd);
 
 /*Utility function : free memory*/
 void		free2d(char **s);
 char		*ft_strjoinfree(char *s1, char *s2);
-char		**ft_splitfree(char *s, char c);
 
 /*Quote removal and expansion of environmental variable*/
-void		quote_treatment(char **s);
-void		env_treatment(char **s);
-char		*env_extract(char *s, int qt);
+void		quote_treatment(char **s, int ex);
+void		env_treatment(char **s, int ex);
+char		*env_extract(char *s, int qt, int ex);
 char		*ft_getenv(char *s);
-void		cmdlist_expansion(t_cmdlist *list);
+void		cmdlist_expansion(t_cmdlist *list, int ex);
 void		set_cmd(t_cmdlist *cmd);
-void		parse_cmd(t_cmdlist *lst);
+int			parse_cmd(t_cmdlist *lst, int ex);
 void		env_build(char **envp);
 
 /*lexer initalization*/
-t_cmdlist	*lexer_init(char *s);
+t_cmdlist	*lexer_init(char *s, int ex);
 
 /*built-in : export*/
 int			ft_envcmp(const char *s1, const char *s2);
-int			bin_export(t_commands cmd);
+int			export_str(char *s);
+int			bin_export(t_command cmd);
 
 /*built-in : echo*/
-int			bin_echo(t_commands cmd);
+int			bin_echo(t_command cmd);
 
+/*built-in : unset*/
+int			bin_unset(t_command cmd);
+void		remove_env(char *s);
 /*built-in : env*/
-int			bin_env(t_commands cmd);
+int			bin_env(t_command cmd);
+
+int			bin_exit(t_command cmd, int ex);
 /*For error handling*/
 int			error_msg(int i, char *s);
 void		*token_error(char **s);

@@ -6,13 +6,13 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/08 19:34:02 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/10 16:51:46 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	check_cmd(t_commands *cmd)
+void	check_cmd(t_command *cmd)
 {
 	int		i;
 
@@ -24,7 +24,7 @@ void	check_cmd(t_commands *cmd)
 		else
 		{
 			if (!cmd->cmd)
-				cmd->cmd = ft_strdup(cmd->token[i]);
+				cmd->cmd = cmd->token[i];
 			else
 				ft_lstadd_back(&(cmd->args), ft_lstnew(cmd->token[i]));
 			i++;
@@ -44,7 +44,7 @@ void	set_cmd(t_cmdlist *cmd)
 	}
 }
 
-int	check_builtin(t_commands cmd)
+int	check_builtin(t_command cmd, int ex)
 {
 	char	*s;
 
@@ -58,17 +58,18 @@ int	check_builtin(t_commands cmd)
 	if (!ft_strcmp(s, "export"))
 		return (bin_export(cmd));
 	if (!ft_strcmp(s, "unset"))
-		return (1);
+		return (bin_unset(cmd));
 	if (!ft_strcmp(s, "env"))
 		return (bin_env(cmd));
 	if (!ft_strcmp(s, "exit"))
-		return (1);
-	return (0);
+		return (bin_exit(cmd, ex));
+	return (-1);
 }
 
-void	parse_cmd(t_cmdlist *lst)
+int	parse_cmd(t_cmdlist *lst, int ex)
 {
-	if (!check_builtin(lst->cmd))
-		return ;
-}
+	int	ret;
 
+	ret = check_builtin(lst->cmd, ex);
+	return (ret);
+}
