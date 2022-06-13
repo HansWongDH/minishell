@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 13:04:50 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/10 17:43:37 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/13 21:14:57 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ int	bin_unset(t_command cmd)
 	error = 0;
 	while (lst)
 	{
-		if (!check_key(lst->content))
+		if (!check_key(*(char **)lst->content))
 			error = 1;
-		value = ft_getenv(lst->content);
+		value = ft_getenv(*(char **)lst->content);
 		if (value)
 		{
-			remove_env(lst->content);
 			free(value);
+			remove_env(*(char **)lst->content);
 		}
 		lst = lst->next;
 	}

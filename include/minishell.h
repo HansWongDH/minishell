@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/10 17:26:48 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/13 16:30:52 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_command {
 	int		sym_in;
 	char	*outfile;
 	int		sym_out;
-	char	*cmd;
+	char	**cmd;
 	t_list	*args;
 	char	**red;
 }	t_command;
@@ -111,6 +111,10 @@ void		remove_env(char *s);
 int			bin_env(t_command cmd);
 
 int			bin_exit(t_command cmd, int ex);
+
+int			bin_pwd(t_command cmd);
+
+int			bin_cd(t_command cmd);
 /*For error handling*/
 int			error_msg(int i, char *s);
 void		*token_error(char **s);

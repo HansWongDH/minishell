@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 16:05:32 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/10 17:45:31 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/13 21:13:33 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ int	export_noargs(void)
 	while (export)
 	{
 		export_print(export->content);
+		if (export->next && !ft_envcmp(export->next->content, "PWD"))
+		{
+			if (!ft_getenv("OLDPWD"))
+				printf("declare -x OLDPWD\n");
+		}
 		export = export->next;
 	}
 	return (0);
@@ -67,8 +72,11 @@ int	export_str(char *s)
 	env = ft_substr(s, 0, i);
 	value = ft_getenv(env);
 	if (value)
+	{
 		remove_env(env);
-	ft_lstadd_back(&g_env, ft_lstnew(s));
+		free(value);
+	}
+	ft_lstadd_back(&g_env, ft_lstnew(ft_strdup(s)));
 	free(env);
 	return (1);
 }
@@ -84,9 +92,7 @@ int	bin_export(t_command cmd)
 		return (export_noargs());
 	while (lst)
 	{
-		// if (!ft_strchr(lst->content, '='))
-		// 	error = 1;
-		if (!export_str(lst->content))
+		if (!export_str(*(char **)lst->content))
 			error = 1;
 		lst = lst->next;
 	}

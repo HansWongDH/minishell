@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/10 16:51:46 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/13 16:32:00 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	check_cmd(t_command *cmd)
 		else
 		{
 			if (!cmd->cmd)
-				cmd->cmd = cmd->token[i];
+				cmd->cmd = &(cmd->token[i]);
 			else
-				ft_lstadd_back(&(cmd->args), ft_lstnew(cmd->token[i]));
+				ft_lstadd_back(&(cmd->args), ft_lstnew(&(cmd->token[i])));
 			i++;
 		}
 	}
@@ -48,13 +48,13 @@ int	check_builtin(t_command cmd, int ex)
 {
 	char	*s;
 
-	s = cmd.cmd;
+	s = *cmd.cmd;
 	if (!ft_strcmp(s, "echo"))
 		return (bin_echo(cmd));
 	if (!ft_strcmp(s, "cd"))
-		return (1);
+		return (bin_cd(cmd));
 	if (!ft_strcmp(s, "pwd"))
-		return (1);
+		return (bin_pwd(cmd));
 	if (!ft_strcmp(s, "export"))
 		return (bin_export(cmd));
 	if (!ft_strcmp(s, "unset"))
