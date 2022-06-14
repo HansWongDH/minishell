@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/13 16:30:52 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:24:44 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ int			bin_exit(t_command cmd, int ex);
 int			bin_pwd(t_command cmd);
 
 int			bin_cd(t_command cmd);
+
+void		free_cmdlist(t_cmdlist *cmd);
 /*For error handling*/
 int			error_msg(int i, char *s);
 void		*token_error(char **s);

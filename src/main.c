@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/13 19:10:24 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:30:23 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		str = readline("Minishell⌲ ");
-		if (!str)
-			return (0);
 		add_history(str);
 		list = lexer_init(str, ex);
 		if (list)
+		{
 			ex = parse_cmd(list, ex);
+			free_cmdlist(list);
+		}
 		free(str);
-		free(list);
 	}
 }

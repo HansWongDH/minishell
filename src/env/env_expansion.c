@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:02:16 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/10 17:29:40 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:37:51 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	env_treatment(char **s, int ex)
 	i = 0;
 	while (s[i])
 	{
-		if (ft_strchr(s[i], '$'))
+		if (ft_strchr(s[i], '$') || !ft_strcmp(s[i], "~"))
 		{
 			temp = env_extract(s[i], 0, ex);
 			s[i] = ft_strdup(temp);
