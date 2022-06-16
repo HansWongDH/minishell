@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_msg.c                                        :+:      :+:    :+:   */
+/*   red_dup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/04 03:15:11 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/16 16:14:55 by wding-ha         ###   ########.fr       */
+/*   Created: 2022/06/16 17:18:11 by wding-ha          #+#    #+#             */
+/*   Updated: 2022/06/16 18:10:26 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	error_msg(int i, char *s)
+int	redir_fd(t_command cmd)
 {
-	ft_putstr_fd(s, 2);
-	return (i);
-}
+	t_list 	*lst;
+	t_redir	*red;
+	int		fd;
+	int		out;
 
-void	*token_error(char **s)
-{
-	free2d(s);
-	return (NULL);
+	lst = cmd.redir;
+	while (lst)
+	{
+		red = lst->content;
+		if (red->red < 4)
+			fd = open(*red->file, O_WRONLY | O_TRUNC | O_CREAT, 0700);
+		lst = lst->next;
+	}
+	out = dup(1);
+	dup2(fd, 1);
+	close(fd);
+	return (out);
 }

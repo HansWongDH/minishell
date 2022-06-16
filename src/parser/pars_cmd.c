@@ -6,21 +6,36 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/14 19:05:52 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:10:39 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+t_redir	*new_redir(char	**file, int red)
+{
+	t_redir	*lst;
+
+	lst = malloc(sizeof(t_redir));
+	lst->file = file;
+	lst->red = red;
+	return (lst);
+}
+
 void	check_cmd(t_command *cmd)
 {
 	int		i;
+	t_redir	*red;
 
 	i = 0;
 	while (cmd->token[i])
 	{
 		if (parse_symbol(cmd->token[i]) > 1)
+		{
+			red = new_redir(&(cmd->token[i + 1]), parse_symbol(cmd->token[i]));
+			ft_lstadd_back(&(cmd->redir), ft_lstnew(red));
 			i = i + 2;
+		}
 		else
 		{
 			if (!cmd->cmd && cmd->token[i])

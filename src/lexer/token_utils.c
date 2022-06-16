@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lex_utils.c                                        :+:      :+:    :+:   */
+/*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:46:16 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/04 04:09:32 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/16 13:53:47 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_quote(char *s, int *i, int c)
 	}
 	if (s[*i] == c)
 		return (len);
-	return (error_msg(-1, "Syntax error: open quote\n"));
+	return (error_msg(-1, "Syntax error open quote\n"));
 }
 
 int	is_symbol(char c)
@@ -49,9 +49,9 @@ int	check_symbol(char	*s, int *i, int c)
 		len++;
 	}
 	if (c == '|' && s[*i + 1] == c)
-		return (error_msg(-1, "Syntax error: unkown symbol\n"));
+		return (error_msg(-1, "Syntax error unexpected token\n"));
 	if (is_symbol(c) == 1 && is_symbol(s[*i + 1]))
-		return (error_msg(-1, "Syntax error: unkown symbol\n"));
+		return (error_msg(-1, "Syntax error unexpected token\n"));
 	return (len);
 }
 
