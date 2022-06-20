@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/16 18:10:39 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/20 21:32:25 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,15 @@ int	check_builtin(t_command cmd, int ex)
 	return (-1);
 }
 
-int	parse_cmd(t_cmdlist *lst, int ex)
+int	parse_cmd(t_cmdlist *lst, t_shell *sh)
 {
 	int		ret;
 
-	ret = check_builtin(lst->cmd, ex);
+	redir_dup(lst->cmd);
+	ret = check_builtin(lst->cmd, sh->ex);
+	if (ret < 0)
+		ret = execute(lst->cmd, sh);
+	dup2(sh->dstdin, 0);
+	dup2(sh->dstdout, 1);
 	return (ret);
 }

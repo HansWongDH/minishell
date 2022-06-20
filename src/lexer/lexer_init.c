@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 21:39:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/16 17:29:29 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/20 21:09:39 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	cmdlist_expansion(t_cmdlist *list, int ex)
 	}
 }
 
-t_cmdlist	*lexer_init(char *s, int *ex)
+t_cmdlist	*lexer_init(char *s, t_shell *sh)
 {
 	int			i;
 	char		**token;
@@ -64,7 +64,7 @@ t_cmdlist	*lexer_init(char *s, int *ex)
 	i = token_length(s);
 	if (i <= 0)
 	{
-		*ex = i * i;
+		sh->ex = i * i;
 		return (NULL);
 	}
 	token = split_token(s, i);
@@ -72,7 +72,7 @@ t_cmdlist	*lexer_init(char *s, int *ex)
 	if (!lst)
 		return (NULL);
 	set_cmd(lst);
-	cmdlist_expansion(lst, *ex);
-	*ex = cmd_tolower(lst);
+	cmdlist_expansion(lst, sh->ex);
+	sh->ex = cmd_tolower(lst);
 	return (lst);
 }

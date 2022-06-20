@@ -6,7 +6,7 @@
 #    By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/12 18:02:33 by wding-ha          #+#    #+#              #
-#    Updated: 2022/06/14 19:27:28 by wding-ha         ###   ########.fr        #
+#    Updated: 2022/06/20 21:21:26 by wding-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,21 +38,21 @@ PARS_DIR		= src/parser/
 ENV_DIR			= src/env/
 ERR_DIR			= src/error/
 BIN_DIR			= src/built-in/
-
+EXE_DIR			= src/exec/
+RED_DIR			= src/redir/
+MAIN			= $(SRC_DIR)main.c
 ##############
 #sSOURCE FILE#
 ##############
 
-S_SRCS			= $(SRC_DIR)main.c
-S_LEX			= $(LEX_DIR)lexer_init.c $(LEX_DIR)token_utils.c \
-				  $(LEX_DIR)token_init.c $(LEX_DIR)cmdlist_init.c $(LEX_DIR)cmdlist_utils.c 
-S_PARS			= $(PARS_DIR)pars_quote.c $(PARS_DIR)pars_util.c $(PARS_DIR)pars_cmd.c
-S_ENV			= $(ENV_DIR)env_expansion.c $(ENV_DIR)env_get.c $(ENV_DIR)env_build.c
-S_ERR			= $(ERR_DIR)error_msg.c $(ERR_DIR)free_memory.c
-S_BIN			= $(BIN_DIR)bin_export.c $(BIN_DIR)bin_echo.c $(BIN_DIR)bin_env.c $(BIN_DIR)bin_unset.c \
-				  $(BIN_DIR)bin_exit.c $(BIN_DIR)bin_pwd.c $(BIN_DIR)bin_cd.c
-OBJS			= $(S_SRCS:.c=.o) $(S_LEX:.c=.o) $(S_PARS:.c=.o) $(S_ENV:.c=.o) $(S_ERR:.c=.o) $(S_BIN:.c=.o)
-
+S_SRCS			= $(addprefix $(LEX_DIR), lexer_init.c token_utils.c token_init.c cmdlist_init.c cmdlist_utils.c) \
+				  $(addprefix $(PARS_DIR), pars_quote.c pars_util.c pars_cmd.c) \
+				  $(addprefix $(ENV_DIR), env_expansion.c env_get.c env_build.c) \
+				  $(addprefix $(ERR_DIR), error_msg.c free_memory.c) \
+				  $(addprefix $(BIN_DIR), bin_export.c bin_echo.c bin_env.c bin_unset.c bin_exit.c bin_pwd.c bin_cd.c) \
+				  $(addprefix $(EXE_DIR), executor.c)\
+				  $(addprefix $(RED_DIR), red_dup.c)
+OBJS			= $(S_SRCS:.c=.o) 
 ##########
 #COMMANDS#
 ##########
