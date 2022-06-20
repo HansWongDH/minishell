@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/13 16:30:52 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/16 16:47:10 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ outfile	-filename for outfile
 sym_in	-type of infile redic
 sym_out	-type of outfile redic
 */
+typedef struct s_redir {
+	char			**file;
+	int				red;
+}	t_redir;
 
 typedef struct s_command {
 	char	**token;
@@ -46,7 +50,7 @@ typedef struct s_command {
 	int		sym_out;
 	char	**cmd;
 	t_list	*args;
-	char	**red;
+	t_list	*redir;
 }	t_command;
 
 /*command group in linkedlist form*/
@@ -94,7 +98,7 @@ int			parse_cmd(t_cmdlist *lst, int ex);
 void		env_build(char **envp);
 
 /*lexer initalization*/
-t_cmdlist	*lexer_init(char *s, int ex);
+t_cmdlist	*lexer_init(char *s, int *ex);
 
 /*built-in : export*/
 int			ft_envcmp(const char *s1, const char *s2);
@@ -115,6 +119,8 @@ int			bin_exit(t_command cmd, int ex);
 int			bin_pwd(t_command cmd);
 
 int			bin_cd(t_command cmd);
+
+void		free_cmdlist(t_cmdlist *cmd);
 /*For error handling*/
 int			error_msg(int i, char *s);
 void		*token_error(char **s);

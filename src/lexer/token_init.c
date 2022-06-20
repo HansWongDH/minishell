@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lex_init.c                                         :+:      :+:    :+:   */
+/*   token_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:13 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/04 04:06:04 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/16 13:52:57 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ char	**split_token(char *s, int size)
 		start = i;
 		while (is_args(s[i]))
 		{
-			if (is_quote(s[i]) && check_quote(s, &i, s[i]) < 0)
-				return (token_error(ret));
+			if (is_quote(s[i]))
+				check_quote(s, &i, s[i]);
 			i++;
 		}
 		if (i - start > 0 && !is_args(s[i]))
