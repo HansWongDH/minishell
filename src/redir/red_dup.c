@@ -3,18 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   red_dup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 17:18:11 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/16 18:10:26 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/20 11:57:34 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Redirection fd function
+ * 
+ * @param cmd cmd struct
+ * @return int output fd 
+ */
 int	redir_fd(t_command cmd)
 {
-	t_list 	*lst;
+	t_list	*lst;
 	t_redir	*red;
 	int		fd;
 	int		out;

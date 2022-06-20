@@ -3,15 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   pars_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/16 18:10:39 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/20 13:21:24 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief 
+ * 
+ * @param file 
+ * @param red 
+ * @return t_redir* 
+ */
 t_redir	*new_redir(char	**file, int red)
 {
 	t_redir	*lst;
@@ -22,6 +29,11 @@ t_redir	*new_redir(char	**file, int red)
 	return (lst);
 }
 
+/**
+ * @brief 
+ * 
+ * @param cmd 
+ */
 void	check_cmd(t_command *cmd)
 {
 	int		i;
@@ -47,6 +59,11 @@ void	check_cmd(t_command *cmd)
 	}
 }
 
+/**
+ * @brief Set the cmd object
+ * 
+ * @param cmd Command list
+ */
 void	set_cmd(t_cmdlist *cmd)
 {
 	t_cmdlist	*lst;
@@ -59,6 +76,13 @@ void	set_cmd(t_cmdlist *cmd)
 	}
 }
 
+/**
+ * @brief Checks if one of the commands is a builtin
+ * 
+ * @param cmd Command
+ * @param ex Exit status
+ * @return int 
+ */
 int	check_builtin(t_command cmd, int ex)
 {
 	char	*s;
@@ -81,6 +105,13 @@ int	check_builtin(t_command cmd, int ex)
 	return (-1);
 }
 
+/**
+ * @brief Parse the command list and delegates command check to builtin
+ * 
+ * @param lst Command list
+ * @param ex Exit status
+ * @return int 
+ */
 int	parse_cmd(t_cmdlist *lst, int ex)
 {
 	int		ret;

@@ -6,14 +6,14 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:42:26 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/15 15:23:33 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/20 12:52:40 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * @brief 
+ * @brief Extracts quotes
  * 
  * @param s 
  * @param ex 

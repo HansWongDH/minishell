@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 21:39:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/16 17:29:29 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:52:39 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ int	cmd_tolower(t_cmdlist *lst)
 	return (0);
 }
 
+/**
+ * @brief Expands the command list
+ * 
+ * @param list List 
+ * @param ex 
+ */
 void	cmdlist_expansion(t_cmdlist *list, int ex)
 {
 	t_cmdlist	*temp;
