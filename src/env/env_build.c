@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   env_build.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:26:40 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/14 14:01:48 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/20 11:54:38 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief This function helps you build an env linked list
+ * 
+ * @param envp Pointer to env variables
+ */
 void	env_build(char **envp)
 {
 	int	i;

@@ -3,15 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   pars_quote.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:42:26 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/10 17:26:41 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:23:33 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief 
+ * 
+ * @param s 
+ * @param ex 
+ * @return char* 
+ */
 char	*quote_extract(char *s, int ex)
 {
 	char	*ret;
@@ -39,6 +46,12 @@ char	*quote_extract(char *s, int ex)
 	return (ret);
 }
 
+/**
+ * @brief 
+ * 
+ * @param s 
+ * @param ex 
+ */
 void	quote_treatment(char **s, int ex)
 {
 	int		i;

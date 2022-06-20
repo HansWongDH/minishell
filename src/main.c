@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/16 13:47:39 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/20 11:54:32 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Main function
+ * 
+ * @param ac Argument count
+ * @param av Argument variables
+ * @param envp Environment variables
+ * @return int Exit code
+ */
 int	main(int ac, char **av, char **envp)
 {
 	char		*str;
