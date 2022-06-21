@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:32:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/20 20:42:38 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/21 15:11:08 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,23 @@ int	syntax_checking(char **s)
 
 	i = 0;
 	if (parse_symbol(s[i]) == PIPE)
-		return (error_msg(-1, "Syntax error pipe\n"));
+		return (error_msg(-1, 2, "syntax error near unexpected token", "`|'"));
 	while (s[i])
 	{
-		if (parse_symbol(s[i]) > 1 && (parse_symbol(s[i + 1]) || !s[i + 1]))
-			return (error_msg(-1, "Syntax error redirection\n"));
+		if (parse_symbol(s[i]) > 1)
+		{
+			if (!s[i + 1])
+				return (error_msg(-1, 2, "syntax error near unexpected token", \
+				"newline"));
+			if (parse_symbol(s[i + 1]))
+				return (error_msg(-1, 2, "syntax error near unexpected token", \
+				s[i + 1]));
+		}
 		if (parse_symbol(s[i]) == PIPE)
 		{
 			if (parse_symbol(s[i + 1]) == PIPE || !s[i + 1])
-				return (error_msg(-1, "Syntax error pipe\n"));
+				return (error_msg(-1, 2, "syntax error near unexpected token", \
+				"`|'"));
 		}
 		i++;
 	}
@@ -49,7 +57,7 @@ char	**ft_divide(char **s, int len, int i)
 	return (ret);
 }
 
-t_command	*struct_init(t_command *cmd)
+t_command	*struct_init(t_command	*cmd)
 {
 	cmd->token = NULL;
 	cmd->cmd = NULL;

@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:46:04 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/20 21:21:02 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/21 20:30:00 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**argumentextract(char *s, t_command cmd)
 	return (ret);
 }
 
-int	execute(t_command cmd, t_shell *sh)
+int	executor(t_command cmd, t_shell *sh)
 {
 	char	**env;
 	char	*exe;
@@ -83,7 +83,21 @@ int	execute(t_command cmd, t_shell *sh)
 	{
 		exe = pathextract(*cmd.cmd, &i);
 		if (!exe)
-			return (1);
+			exit(error_msg(1, 2, *cmd.cmd, ": command not found"));
 	}
+	exit(0);
+}
+
+int	execute(t_command cmd, t_shell *sh)
+{
+	int	pid;
+	int	status;
+
+	pid = fork();
+	if (pid == 0)
+		executor(cmd, sh);
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		return (127);
 	return (0);
 }

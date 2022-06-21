@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/20 21:32:27 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/21 20:56:58 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_shell {
 	int	dstdin;
 	int	dstdout;
 	int	ex;
+	int	fd[2];
 }	t_shell;
 
 /*Splitting string into 2D array token*/
@@ -125,10 +126,12 @@ int			bin_cd(t_command cmd);
 
 void		free_cmdlist(t_cmdlist *cmd);
 /*For error handling*/
-int			error_msg(int i, char *s);
+int			error_msg(int i, int fd, char *args, char *s);
 void		*token_error(char **s);
 
 int			execute(t_command cmd, t_shell *sh);
 int			redir_dup(t_command cmd);
+int			parse_cmdline(t_cmdlist *lst, t_shell *sh);
+t_shell		init(void);
 
 #endif

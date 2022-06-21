@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:05:55 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/14 18:21:47 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/21 13:59:09 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,17 @@ int	change_dir(char *s)
 	char	*dir;
 	char	buf[200];
 
+	if (!ft_strcmp(s, "-"))
+	{
+		s = ft_getenv("OLDPWD");
+		if (!s)
+			return (error_msg(1, 2, "cd", ": OLDPWD not set"));
+	}
 	dir = ft_getenv("PWD");
 	if (!dir)
 		dir = getcwd(buf, 200);
 	if (chdir(s) < 0)
-		return (error_msg(1, "No such file or directory\n"));
+		return (error_msg(1, 2, s, ": No such file or directory"));
 	pwd_change(dir, getcwd(buf, 200));
 	return (0);
 }
@@ -49,7 +55,7 @@ int	bin_cd(t_command cmd)
 	{
 		dir = ft_getenv("HOME");
 		if (!dir)
-			return (error_msg(1, "cd: HOME not set\n"));
+			return (error_msg(1, 2, "cd", ": HOME not set"));
 	}
 	else
 		dir = ft_strdup(*(char **)lst->content);

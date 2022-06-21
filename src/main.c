@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/20 21:07:57 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/21 20:39:19 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int ac, char **av, char **envp)
 		list = lexer_init(str, &sh);
 		if (list)
 		{
-			sh.ex = parse_cmd(list, &sh);
+			sh.ex = parse_cmdline(list, &sh);
 			free_cmdlist(list);
 		}
 		free(str);
