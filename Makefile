@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: echai <echai@student.42.fr>                +#+  +:+       +#+         #
+#    By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/12 18:02:33 by wding-ha          #+#    #+#              #
-#    Updated: 2022/06/22 14:27:36 by echai            ###   ########.fr        #
+#    Updated: 2022/06/22 15:55:09 by wding-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ S_SRCS			= $(addprefix $(LEX_DIR), lexer_init.c token_utils.c token_init.c cmdli
 				  $(addprefix $(ERR_DIR), error_msg.c free_memory.c) \
 				  $(addprefix $(BIN_DIR), bin_export.c bin_echo.c bin_env.c bin_unset.c bin_exit.c bin_pwd.c bin_cd.c) \
 				  $(addprefix $(EXE_DIR), executor.c)\
-				  $(addprefix $(RED_DIR), red_dup.c)\
+				  $(addprefix $(RED_DIR), red_dup.c red_heredoc.c)\
 				  $(addprefix $(SIG_DIR), signal_handlers.c)
 OBJS			= $(S_SRCS:.c=.o) 
 ##########

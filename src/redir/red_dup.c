@@ -3,61 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   red_dup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 17:18:11 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 14:23:12 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 15:56:16 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*tempfile_gen(t_shell *sh)
-{
-	char	*s;
-	char	*ret;
-
-	s = ft_itoa(sh->i);
-	ret = ft_strjoin("temp", s);
-	free(s);
-	return (ret);
-}
-
-int	heredoc_routine(char *s)
-{
-	char	*str;
-	int		fd;
-
-	fd = open("temp", O_CREAT | O_TRUNC | O_WRONLY, 0700);
-	while (1)
-	{
-		str = readline("> ");
-		if (!ft_strcmp(str, s))
-			break ;
-		ft_putstr_fd((ft_strjoinfree(str, ft_strdup("\n"))), fd);
-	}
-	close(fd);
-	exit(0);
-}
-
-int	ft_heredoc(char *s, t_shell *sh)
-{
-	int		fd;
-	int		pid;
-	int		status;
-	char	*file;
-
-	file = tempfile_gen(sh);
-	pid = fork();
-	if (pid == 0)
-		heredoc_routine(s);
-	waitpid(pid, &status, 0);
-	fd = open("temp", O_RDONLY, 0700);
-	unlink("temp");
-	return (fd);
-}
-
-int	redir_fd(t_command cmd, int *in, int *out, t_shell *sh)
+int	redir_fd(t_command cmd, int *in, int *out)
 {
 	t_list	*lst;
 	t_redir	*red;
@@ -79,7 +34,7 @@ int	redir_fd(t_command cmd, int *in, int *out, t_shell *sh)
 				error = *red->file;
 		}
 		if (red->red == HEREDOC)
-			*in = ft_heredoc(*red->file, sh);
+			*in = cmd.fd;
 		lst = lst->next;
 	}
 	if (error)
@@ -87,14 +42,14 @@ int	redir_fd(t_command cmd, int *in, int *out, t_shell *sh)
 	return (0);
 }
 
-int	redir_dup(t_command cmd, t_shell *sh)
+int	redir_dup(t_command cmd)
 {
 	int	out;
 	int	in;
 
 	in = 0;
 	out = 0;
-	if (redir_fd(cmd, &in, &out, sh))
+	if (redir_fd(cmd, &in, &out))
 		return (1);
 	if (in > 0)
 	{

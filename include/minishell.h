@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 14:27:57 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 15:53:52 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_command {
 	char	**cmd;
 	t_list	*args;
 	t_list	*redir;
+	int		fd;
 }	t_command;
 
 /*command group in linkedlist form*/
@@ -131,11 +132,13 @@ int			error_msg(int i, int fd, char *args, char *s);
 void		*token_error(char **s);
 
 int			execute(t_command cmd, t_shell *sh);
-int			redir_dup(t_command cmd, t_shell *sh);
+int			redir_dup(t_command cmd);
+void		parse_heredoc(t_cmdlist *cmd);
 int			parse_cmdline(t_cmdlist *lst, t_shell *sh);
 t_shell		init(void);
 
 /* For signal handling */
 void		ctrl_c(int signo);
+int			executor(t_command cmd, t_shell *sh);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 14:28:24 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 15:54:52 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,16 +116,30 @@ int	parse_cmd(t_cmdlist *lst, t_shell *sh)
 {
 	int		ret;
 
-	if (redir_dup(lst->cmd, sh))
+	sh->dstdin = dup(0);
+	sh->dstdout = dup(1);
+	if (redir_dup(lst->cmd))
 		return (1);
 	ret = check_builtin(lst->cmd, sh->ex);
 	if (ret < 0)
 		ret = execute(lst->cmd, sh);
-	// dup2(sh->dstdin, 0);
-	// close(sh->dstdin);
-	// dup2(sh->dstdout, 1);
-	// close(sh->dstdout);
+	dup2(sh->dstdin, 0);
+	close(sh->dstdin);
+	dup2(sh->dstdout, 1);
+	close(sh->dstdout);
 	return (ret);
+}
+
+int	parse_cmdchild(t_cmdlist *lst, t_shell *sh)
+{
+	int		ret;
+
+	if (redir_dup(lst->cmd))
+		return (1);
+	ret = check_builtin(lst->cmd, sh->ex);
+	if (ret < 0)
+		ret = executor(lst->cmd, sh);
+	exit(ret);
 }
 
 int	child_create(t_cmdlist *lst, t_shell *sh)
@@ -143,7 +157,7 @@ int	child_create(t_cmdlist *lst, t_shell *sh)
 		close(sh->fd[0]);
 		close(sh->fd[1]);
 	}
-	exit (parse_cmd(lst, sh));
+	exit (parse_cmdchild(lst, sh));
 }
 
 int	parse_cmdline(t_cmdlist *lst, t_shell *sh)
@@ -151,6 +165,7 @@ int	parse_cmdline(t_cmdlist *lst, t_shell *sh)
 	int	pid;
 	int	status;
 
+	parse_heredoc(lst);
 	if (lst && !lst->next)
 		return (parse_cmd(lst, sh));
 	else
