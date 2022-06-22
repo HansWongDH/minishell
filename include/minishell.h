@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/21 20:56:58 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/22 14:13:45 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_shell {
 	int	dstdin;
 	int	dstdout;
 	int	ex;
+	int	i;
 	int	fd[2];
 }	t_shell;
 
@@ -130,7 +131,7 @@ int			error_msg(int i, int fd, char *args, char *s);
 void		*token_error(char **s);
 
 int			execute(t_command cmd, t_shell *sh);
-int			redir_dup(t_command cmd);
+int			redir_dup(t_command cmd, t_shell *sh);
 int			parse_cmdline(t_cmdlist *lst, t_shell *sh);
 t_shell		init(void);
 
