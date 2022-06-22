@@ -15,14 +15,14 @@
 int	bin_env(t_command cmd)
 {
 	t_list	*lst;
-	int		i;
+	// int		i;
 
-	i = 0;
+	// i = 0;
 	(void)cmd;
 	lst = g_env;
 	while (lst)
 	{
-		printf("%s\n", lst->content);
+		printf("%s\n", (char *)lst->content);
 		lst = lst->next;
 	}
 	return (0);
