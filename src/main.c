@@ -19,9 +19,10 @@ t_shell	init(void)
 	sh.ex = 0;
 	sh.dstdin = dup(0);
 	sh.dstdout = dup(1);
-	tcgetattr(0, sh.ori);
-	sh.new->c_cflag = ECHOCTL;
-	tcsetattr(0, TCSANOW, sh.new);
+    tcgetattr(STDIN_FILENO, &sh.ori);
+    tcgetattr(STDIN_FILENO, &sh.new);
+    sh.new.c_lflag &= ~ ECHOCTL;
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &sh.new);
 	return (sh);
 }
 

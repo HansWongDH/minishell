@@ -1,5 +1,7 @@
 {
-    "files.associations": {
-        "minishell.h": "c"
-    }
+  "files.associations": {
+    "minishell.h": "c",
+    "stdlib.h": "c",
+    "wait.h": "c"
+  }
 }

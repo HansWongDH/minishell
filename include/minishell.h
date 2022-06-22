@@ -13,11 +13,15 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include <stdio.h>
+# include <signal.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <sys/ioctl.h>
 # include <termios.h>
 # include "libft.h"
 
@@ -61,8 +65,8 @@ typedef struct s_shell {
 	int				ex;
 	int				i;
 	int				fd[2];
-	struct termios	*ori;
-	struct termios	*new;
+	struct termios	ori;
+	struct termios	new;
 }	t_shell;
 
 /*Splitting string into 2D array token*/

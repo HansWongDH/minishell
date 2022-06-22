@@ -21,8 +21,8 @@ NAME			= minishell
 #######
 
 CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include
-LFLAGS			= -L/usr/local/opt/readline/lib -lreadline
+CFLAGS			= -fsanitize=address -g3 -I/usr/local/opt/readline/include
+LFLAGS			= -L/usr/include -L/usr/local/opt/readline/lib -lreadline
 RM				= rm -f
 
 ##################
