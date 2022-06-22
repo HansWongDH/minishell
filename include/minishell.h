@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 14:25:12 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 14:27:57 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,8 @@ int			execute(t_command cmd, t_shell *sh);
 int			redir_dup(t_command cmd, t_shell *sh);
 int			parse_cmdline(t_cmdlist *lst, t_shell *sh);
 t_shell		init(void);
+
+/* For signal handling */
+void		ctrl_c(int signo);
 
 #endif

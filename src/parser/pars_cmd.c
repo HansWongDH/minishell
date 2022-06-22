@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 14:25:30 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 14:28:24 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,18 +105,14 @@ int	check_builtin(t_command cmd, int ex)
 	return (-1);
 }
 
-<<<<<<< HEAD
 /**
  * @brief Parse the command list and delegates command check to builtin
  * 
  * @param lst Command list
- * @param ex Exit status
+ * @param sh Shell struct
  * @return int 
  */
-int	parse_cmd(t_cmdlist *lst, int ex)
-=======
 int	parse_cmd(t_cmdlist *lst, t_shell *sh)
->>>>>>> e8d267a1d7bcc2460b35c847c9d325e0cc4a7f8f
 {
 	int		ret;
 
