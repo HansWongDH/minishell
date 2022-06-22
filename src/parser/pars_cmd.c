@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/20 13:21:24 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 14:25:30 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	check_builtin(t_command cmd, int ex)
 	return (-1);
 }
 
+<<<<<<< HEAD
 /**
  * @brief Parse the command list and delegates command check to builtin
  * 
@@ -113,9 +114,68 @@ int	check_builtin(t_command cmd, int ex)
  * @return int 
  */
 int	parse_cmd(t_cmdlist *lst, int ex)
+=======
+int	parse_cmd(t_cmdlist *lst, t_shell *sh)
+>>>>>>> e8d267a1d7bcc2460b35c847c9d325e0cc4a7f8f
 {
 	int		ret;
 
-	ret = check_builtin(lst->cmd, ex);
+	if (redir_dup(lst->cmd, sh))
+		return (1);
+	ret = check_builtin(lst->cmd, sh->ex);
+	if (ret < 0)
+		ret = execute(lst->cmd, sh);
+	// dup2(sh->dstdin, 0);
+	// close(sh->dstdin);
+	// dup2(sh->dstdout, 1);
+	// close(sh->dstdout);
 	return (ret);
+}
+
+int	child_create(t_cmdlist *lst, t_shell *sh)
+{
+	if (sh->i != -1)
+	{
+		dup2(sh->fd[1], 1);
+		close(sh->fd[1]);
+		close(sh->fd[0]);
+	}
+	if (sh->i != 0)
+	{
+		dup2(sh->dstdin, 0);
+		close(sh->dstdin);
+		close(sh->fd[0]);
+		close(sh->fd[1]);
+	}
+	exit (parse_cmd(lst, sh));
+}
+
+int	parse_cmdline(t_cmdlist *lst, t_shell *sh)
+{
+	int	pid;
+	int	status;
+
+	if (lst && !lst->next)
+		return (parse_cmd(lst, sh));
+	else
+	{
+		sh->i = 0;
+		while (lst)
+		{
+			pipe(sh->fd);
+			if (!lst->next)
+				sh->i = -1;
+			pid = fork();
+			if (pid == 0)
+				return (child_create(lst, sh));
+			sh->i++;
+			if (sh->i > 0)
+				sh->dstdin = dup(sh->fd[0]);
+			close(sh->fd[0]);
+			close(sh->fd[1]);
+			lst = lst->next;
+		}
+		waitpid(pid, &status, 0);
+	}
+	return (0);
 }

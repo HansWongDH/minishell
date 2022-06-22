@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:15:22 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/13 15:16:36 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/21 16:46:02 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,9 @@ int	bin_echo(t_command cmd)
 		ft_putstr_fd(*(char **)lst->content, 1);
 		if (lst->next)
 			ft_putchar_fd(32, 1);
-		else
-		{
-			if (nl)
-				ft_putchar_fd('\n', 1);
-		}
 		lst = lst->next;
 	}
+	if (nl && !lst)
+		ft_putchar_fd('\n', 1);
 	return (0);
 }

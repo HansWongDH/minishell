@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/20 13:59:50 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 14:25:12 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ typedef struct s_redir {
 
 typedef struct s_command {
 	char	**token;
-	int		num;
-	char	*infile;
-	int		sym_in;
-	char	*outfile;
-	int		sym_out;
 	char	**cmd;
 	t_list	*args;
 	t_list	*redir;
@@ -58,6 +53,14 @@ typedef struct s_cmdlist {
 	struct s_command	cmd;
 	struct s_cmdlist	*next;
 }	t_cmdlist;
+
+typedef struct s_shell {
+	int	dstdin;
+	int	dstdout;
+	int	ex;
+	int	i;
+	int	fd[2];
+}	t_shell;
 
 /*Splitting string into 2D array token*/
 int			token_length(char *s);
@@ -86,6 +89,8 @@ t_cmdlist	*ft_newcmd(t_command cmd);
 /*Utility function : free memory*/
 void		free2d(char **s);
 char		*ft_strjoinfree(char *s1, char *s2);
+char		**ft_strjoin2d(char **args, char *s, int i);
+char		*ft_combine_key(char *s1, char *s2, char c);
 
 /*Quote removal and expansion of environmental variable*/
 void		quote_treatment(char **s, int ex);
@@ -94,11 +99,11 @@ char		*env_extract(char *s, int qt, int ex);
 char		*ft_getenv(char *s);
 void		cmdlist_expansion(t_cmdlist *list, int ex);
 void		set_cmd(t_cmdlist *cmd);
-int			parse_cmd(t_cmdlist *lst, int ex);
+int			parse_cmd(t_cmdlist *lst, t_shell *sh);
 void		env_build(char **envp);
 
 /*lexer initalization*/
-t_cmdlist	*lexer_init(char *s, int *ex);
+t_cmdlist	*lexer_init(char *s, t_shell *sh);
 
 /*built-in : export*/
 int			ft_envcmp(const char *s1, const char *s2);
@@ -122,7 +127,12 @@ int			bin_cd(t_command cmd);
 
 void		free_cmdlist(t_cmdlist *cmd);
 /*For error handling*/
-int			error_msg(int i, char *s);
+int			error_msg(int i, int fd, char *args, char *s);
 void		*token_error(char **s);
+
+int			execute(t_command cmd, t_shell *sh);
+int			redir_dup(t_command cmd, t_shell *sh);
+int			parse_cmdline(t_cmdlist *lst, t_shell *sh);
+t_shell		init(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 16:05:32 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/13 21:13:33 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/21 13:26:59 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,19 +84,19 @@ int	export_str(char *s)
 int	bin_export(t_command cmd)
 {
 	t_list	*lst;
-	int		error;
+	char	*error;
 
 	lst = cmd.args;
-	error = 0;
+	error = NULL;
 	if (!lst)
 		return (export_noargs());
 	while (lst)
 	{
 		if (!export_str(*(char **)lst->content))
-			error = 1;
+			error = *(char **)lst->content;
 		lst = lst->next;
 	}
 	if (error)
-		return (error_msg(1, "Error: not a valid identifier\n"));
+		return (error_msg(1, 2, error, ": not a valid identifier"));
 	return (0);
 }

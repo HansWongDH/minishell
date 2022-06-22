@@ -6,11 +6,21 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/20 11:54:32 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 14:25:21 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_shell	init(void)
+{
+	t_shell	sh;
+
+	sh.ex = 0;
+	sh.dstdin = dup(0);
+	sh.dstdout = dup(1);
+	return (sh);
+}
 
 /**
  * @brief Main function
@@ -24,21 +34,23 @@ int	main(int ac, char **av, char **envp)
 {
 	char		*str;
 	t_cmdlist	*list;
-	int			ex;
+	t_shell		sh;
 
 	(void)ac;
 	(void)av;
-	ex = 0;
+	sh = init();
 	env_build(envp);
 	signal(SIGINT, SIG_IGN);
 	while (1)
 	{
 		str = readline("Minishell⌲ ");
+		if (!str)
+			break ;
 		add_history(str);
-		list = lexer_init(str, &ex);
+		list = lexer_init(str, &sh);
 		if (list)
 		{
-			ex = parse_cmd(list, ex);
+			sh.ex = parse_cmdline(list, &sh);
 			free_cmdlist(list);
 		}
 		free(str);

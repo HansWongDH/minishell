@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 13:04:50 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/14 18:16:03 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/21 13:27:21 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ int	check_key(char *s)
 int	bin_unset(t_command cmd)
 {
 	t_list	*lst;
-	int		error;
+	char	*error;
 	char	*value;
 
 	lst = cmd.args;
-	error = 0;
+	error = NULL;
 	while (lst)
 	{
-		if (!check_key(*(char **)lst->content))
-			error = 1;
+		if (!check_key(*(char **)lst->content) && !error)
+			error = *(char **)lst->content;
 		value = ft_getenv(*(char **)lst->content);
 		if (value)
 		{
@@ -74,6 +74,6 @@ int	bin_unset(t_command cmd)
 		lst = lst->next;
 	}
 	if (error)
-		return (error_msg(-1, "Error: not a valid identifier\n"));
+		return (error_msg(-1, 2, error, "not a valid identifier"));
 	return (1);
 }
