@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 17:18:11 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 14:23:12 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 15:05:58 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	ft_heredoc(char *s, t_shell *sh)
 
 	file = tempfile_gen(sh);
 	pid = fork();
+	signal(SIGINT, SIG_DFL);
 	if (pid == 0)
 		heredoc_routine(s);
 	waitpid(pid, &status, 0);

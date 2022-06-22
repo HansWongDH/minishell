@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:46:04 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 12:55:48 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:11:32 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	execute(t_command cmd, t_shell *sh)
 	int	status;
 
 	pid = fork();
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (pid == 0)
 		executor(cmd, sh);
 	waitpid(pid, &status, 0);

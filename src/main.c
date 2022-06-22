@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 14:30:26 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 16:15:05 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 t_shell	init(void)
 {
-	t_shell	sh;
+	t_shell			sh;
 
 	sh.ex = 0;
 	sh.dstdin = dup(0);
 	sh.dstdout = dup(1);
+	tcgetattr(0, sh.ori);
+	sh.new->c_cflag = ECHOCTL;
+	tcsetattr(0, TCSANOW, sh.new);
 	return (sh);
 }
 
@@ -40,10 +43,10 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 	sh = init();
 	env_build(envp);
-	signal(SIGINT, &ctrl_c);
-	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
+		signal(SIGINT, &ctrl_c);
+		signal(SIGQUIT, SIG_IGN);
 		str = readline("Minishell⌲ ");
 		if (!str)
 			break ;

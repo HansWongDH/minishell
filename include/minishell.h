@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 14:27:57 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 16:08:00 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <termios.h>
 # include "libft.h"
 
 # define PIPE 1
@@ -55,11 +56,13 @@ typedef struct s_cmdlist {
 }	t_cmdlist;
 
 typedef struct s_shell {
-	int	dstdin;
-	int	dstdout;
-	int	ex;
-	int	i;
-	int	fd[2];
+	int				dstdin;
+	int				dstdout;
+	int				ex;
+	int				i;
+	int				fd[2];
+	struct termios	*ori;
+	struct termios	*new;
 }	t_shell;
 
 /*Splitting string into 2D array token*/
