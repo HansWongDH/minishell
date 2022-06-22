@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/20 13:59:50 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 13:31:26 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,8 @@ void		free_cmdlist(t_cmdlist *cmd);
 /*For error handling*/
 int			error_msg(int i, char *s);
 void		*token_error(char **s);
+
+/* For signal handling */
+void		ctrl_c(int signo);
 
 #endif

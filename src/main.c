@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/20 11:54:32 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/22 13:01:30 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 	ex = 0;
 	env_build(envp);
-	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, &ctrl_c);
+	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		str = readline("Minishell⌲ ");

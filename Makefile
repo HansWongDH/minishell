@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+         #
+#    By: echai <echai@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/12 18:02:33 by wding-ha          #+#    #+#              #
-#    Updated: 2022/06/14 19:27:28 by wding-ha         ###   ########.fr        #
+#    Updated: 2022/06/22 13:59:27 by echai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ NAME			= minishell
 #######
 
 CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror -fsanitize=address -g3
-LFLAGS			= -L/usr/include -lreadline
+CFLAGS			= -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include
+LFLAGS			= -L/usr/local/opt/readline/lib -lreadline
 RM				= rm -f
 
 ##################
@@ -38,6 +38,7 @@ PARS_DIR		= src/parser/
 ENV_DIR			= src/env/
 ERR_DIR			= src/error/
 BIN_DIR			= src/built-in/
+SIG_DIR			= src/signal/
 
 ##############
 #sSOURCE FILE#
@@ -51,7 +52,8 @@ S_ENV			= $(ENV_DIR)env_expansion.c $(ENV_DIR)env_get.c $(ENV_DIR)env_build.c
 S_ERR			= $(ERR_DIR)error_msg.c $(ERR_DIR)free_memory.c
 S_BIN			= $(BIN_DIR)bin_export.c $(BIN_DIR)bin_echo.c $(BIN_DIR)bin_env.c $(BIN_DIR)bin_unset.c \
 				  $(BIN_DIR)bin_exit.c $(BIN_DIR)bin_pwd.c $(BIN_DIR)bin_cd.c
-OBJS			= $(S_SRCS:.c=.o) $(S_LEX:.c=.o) $(S_PARS:.c=.o) $(S_ENV:.c=.o) $(S_ERR:.c=.o) $(S_BIN:.c=.o)
+S_SIG			= $(SIG_DIR)signal_handlers.c
+OBJS			= $(S_SRCS:.c=.o) $(S_LEX:.c=.o) $(S_PARS:.c=.o) $(S_ENV:.c=.o) $(S_ERR:.c=.o) $(S_BIN:.c=.o) $(S_SIG:.c=.o)
 
 ##########
 #COMMANDS#
