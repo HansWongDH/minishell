@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 21:39:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 14:25:27 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 13:26:29 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,14 @@ int	cmd_tolower(t_cmdlist *lst)
 	int		i;
 	int		cap;
 
-	i = 0;
+	i = -1;
 	s = ft_strdup(*lst->cmd.cmd);
 	cap = 0;
-	while (s[i])
+	while (s[++i])
 	{
 		if (s[i] >= 65 && s[i] <= 90)
 			cap = 1;
 		s[i] = ft_tolower(s[i]);
-		i++;
 	}
 	if (cap)
 	{

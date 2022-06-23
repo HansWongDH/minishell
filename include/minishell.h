@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 16:08:00 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 13:21:43 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ int			execute(t_command cmd, t_shell *sh);
 int			redir_dup(t_command cmd);
 void		parse_heredoc(t_cmdlist *cmd);
 int			parse_cmdline(t_cmdlist *lst, t_shell *sh);
+int			check_builtin(t_command cmd, int ex);
 t_shell		init(void);
 
 /* For signal handling */

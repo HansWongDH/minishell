@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bin_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:30:53 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/10 17:30:18 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:24:40 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int	bin_env(t_command cmd)
 {
 	t_list	*lst;
-	// int		i;
 
-	// i = 0;
 	(void)cmd;
 	lst = g_env;
 	while (lst)
