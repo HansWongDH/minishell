@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 21:39:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 13:26:29 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 20:43:14 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	cmd_tolower(t_cmdlist *lst)
 	}
 	if (cap)
 	{
-		if (!ft_strcmp(s, "unset") || !ft_strcmp(s, "export") \
-		|| !(!ft_strcmp(s, "exit")))
+		if (!ft_strcmp(s, "unset") || !ft_strcmp(s, "export")
+			|| (!ft_strcmp(s, "exit")))
 		{
 			free(s);
 			return (0);
@@ -78,6 +78,7 @@ t_cmdlist	*lexer_init(char *s, t_shell *sh)
 		return (NULL);
 	set_cmd(lst);
 	cmdlist_expansion(lst, sh->ex);
-	sh->ex = cmd_tolower(lst);
+	if (lst->cmd.cmd)
+		sh->ex = cmd_tolower(lst);
 	return (lst);
 }

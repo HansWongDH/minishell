@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 13:04:50 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/21 13:27:21 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:52:04 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ int	bin_unset(t_command cmd)
 		lst = lst->next;
 	}
 	if (error)
-		return (error_msg(-1, 2, error, "not a valid identifier"));
-	return (1);
+		return (error_msg(1, 2, error, "not a valid identifier"));
+	return (0);
 }

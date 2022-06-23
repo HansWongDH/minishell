@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 17:53:21 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 15:32:23 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/23 18:52:04 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	exit_number(char *s)
 	while (s[i])
 	{
 		if (!ft_isdigit(s[i]))
-			return (255);
+			return (2);
 		i++;
 	}
 	return (1);
@@ -36,18 +36,16 @@ int	bin_exit(t_command cmd, int ex)
 
 	lst = cmd.args;
 	if (!lst)
-	{
 		exit(error_msg(ex, 2, "", "exit"));
-	}
 	if (!exit_number(*(char **)lst->content))
 		exit(error_msg(0, 2, "", "exit"));
-	if (exit_number(*(char **)lst->content) == 255)
+	if (exit_number(*(char **)lst->content) == 2)
 	{
 		ft_putstr_fd("exit\n", 2);
 		exit(error_msg(255, 2, "exit", ": numeric argument required"));
 	}
 	else if (ft_lstsize(lst) > 1)
-		return (error_msg(1, 2, "exit", "too many arguments"));
+		return (error_msg(1, 2, "exit\n", "too many arguments"));
 	else
 	{
 		ft_putstr_fd("exit\n", 2);

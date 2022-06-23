@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 15:16:49 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/23 18:37:24 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	parse_cmdchild(t_cmdlist *lst, t_shell *sh)
 	{
 		ret = check_builtin(lst->cmd, sh->ex);
 		if (ret < 0)
-			ret = execute(lst->cmd, sh);
+			ret = executor(lst->cmd, sh);
 	}
 	return (ret);
 }

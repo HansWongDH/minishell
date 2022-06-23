@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 15:51:57 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:50:24 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,5 @@ int	main(int ac, char **av, char **envp)
 			sh.ex = parse_cmdline(list, &sh);
 		free(str);
 	}
+	system("leaks minishell");
 }

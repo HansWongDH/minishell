@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:05:55 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/21 13:59:09 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/23 20:56:24 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	pwd_change(char *oldpath, char *newpath)
 	export_str(oldpwd);
 	export_str(newpwd);
 	free(oldpwd);
+	free(oldpath);
 	free(newpwd);
 }
 
@@ -60,7 +61,10 @@ int	bin_cd(t_command cmd)
 	else
 		dir = ft_strdup(*(char **)lst->content);
 	if (change_dir(dir))
+	{
+		free(dir);
 		return (1);
+	}
 	free(dir);
 	return (0);
 }
