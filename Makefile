@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: echai <echai@student.42.fr>                +#+  +:+       +#+         #
+#    By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/12 18:02:33 by wding-ha          #+#    #+#              #
-#    Updated: 2022/06/23 13:21:05 by echai            ###   ########.fr        #
+#    Updated: 2022/06/23 15:52:21 by wding-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME			= minishell
 #######
 
 CC				= gcc
-CFLAGS			= -fsanitize=address -g3 -I/usr/local/opt/readline/include
+CFLAGS			= -I/usr/local/opt/readline/include
 LFLAGS			= -L/usr/include -L/usr/local/opt/readline/lib -lreadline
 RM				= rm -f
 

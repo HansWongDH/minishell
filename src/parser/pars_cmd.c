@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 13:19:14 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 15:18:51 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,13 +119,20 @@ int	parse_cmd(t_cmdlist *lst, t_shell *sh)
 	sh->dstdin = dup(0);
 	sh->dstdout = dup(1);
 	if (redir_dup(lst->cmd))
+	{
+		free_cmdlist(&lst);
 		return (1);
-	ret = check_builtin(lst->cmd, sh->ex);
-	if (ret < 0)
-		ret = execute(lst->cmd, sh);
+	}
+	if (lst->cmd.cmd)
+	{
+		ret = check_builtin(lst->cmd, sh->ex);
+		if (ret < 0)
+			ret = execute(lst->cmd, sh);
+	}
 	dup2(sh->dstdin, 0);
 	close(sh->dstdin);
 	dup2(sh->dstdout, 1);
 	close(sh->dstdout);
+	free_cmdlist(&lst);
 	return (ret);
 }

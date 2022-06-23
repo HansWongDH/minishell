@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 13:23:23 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 15:51:57 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,7 @@ int	main(int ac, char **av, char **envp)
 		add_history(str);
 		list = lexer_init(str, &sh);
 		if (list)
-		{
 			sh.ex = parse_cmdline(list, &sh);
-			free_cmdlist(list);
-		}
 		free(str);
 	}
 }

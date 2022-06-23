@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_child.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 13:20:42 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 15:16:49 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ int	parse_cmdchild(t_cmdlist *lst, t_shell *sh)
 
 	if (redir_dup(lst->cmd))
 		return (1);
-	ret = check_builtin(lst->cmd, sh->ex);
-	if (ret < 0)
-		ret = executor(lst->cmd, sh);
-	exit(ret);
+	if (lst->cmd.cmd)
+	{
+		ret = check_builtin(lst->cmd, sh->ex);
+		if (ret < 0)
+			ret = execute(lst->cmd, sh);
+	}
+	return (ret);
 }
 
 int	child_create(t_cmdlist *lst, t_shell *sh)
@@ -42,20 +45,19 @@ int	child_create(t_cmdlist *lst, t_shell *sh)
 	exit (parse_cmdchild(lst, sh));
 }
 
-void	fuck_u(t_cmdlist *lst, t_shell *sh)
+void	fork_it(t_cmdlist *lst, t_shell *sh)
 {
 	sh->i++;
 	if (sh->i > 0)
 		sh->dstdin = dup(sh->fd[0]);
 	close(sh->fd[0]);
 	close(sh->fd[1]);
-	lst = lst->next;
 }
 
 int	parse_cmdline(t_cmdlist *lst, t_shell *sh)
 {
-	int	pid;
-	int	status;
+	int			pid;
+	int			status;
 
 	parse_heredoc(lst);
 	if (lst && !lst->next)
@@ -70,10 +72,12 @@ int	parse_cmdline(t_cmdlist *lst, t_shell *sh)
 				sh->i = -1;
 			pid = fork();
 			if (pid == 0)
-				return (child_create(lst, sh));
-			fuck_u(lst, sh);
+				exit(child_create(lst, sh));
+			fork_it(lst, sh);
+			free_cmdlist(&lst);
 		}
-		waitpid(pid, &status, 0);
+		while (waitpid(-1, &status, 0) > 0)
+			;
 	}
 	return (0);
 }

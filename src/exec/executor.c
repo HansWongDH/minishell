@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:46:04 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 13:11:51 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 14:56:32 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,7 @@ int	executor(t_command cmd, t_shell *sh)
 	i = 0;
 	(void)sh;
 	env = listto2d();
-	exe = NULL;
-	arg = NULL;
+	exe = *cmd.cmd;
 	arg = argumentextract(*cmd.cmd, cmd);
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);

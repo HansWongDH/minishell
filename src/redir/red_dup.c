@@ -6,39 +6,52 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 17:18:11 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 15:56:16 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:44:28 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	ft_redirection(t_command cmd, t_redir *red, int *in, int *out)
+{
+	if (red->red == OUTFILE)
+	{
+		if (*out)
+			close(*out);
+		*out = open(*red->file, O_WRONLY | O_TRUNC | O_CREAT, 0700);
+	}
+	if (red->red == DOUTFILE)
+	{
+		if (*out)
+			close(*out);
+		*out = open(*red->file, O_WRONLY | O_APPEND | O_CREAT, 0700);
+	}
+	if (red->red == INFILE)
+	{
+		if (*in)
+			close(*in);
+		*in = open(*red->file, O_RDONLY, 0700);
+		if (*in < 0)
+			return (error_msg(1, 2, *red->file,
+					": No such file and directory"));
+	}
+	if (red->red == HEREDOC)
+		*in = cmd.fd;
+	return (0);
+}
+
 int	redir_fd(t_command cmd, int *in, int *out)
 {
 	t_list	*lst;
 	t_redir	*red;
-	char	*error;
 
 	lst = cmd.redir;
-	error = NULL;
 	while (lst)
 	{
-		red = lst->content;
-		if (red->red == OUTFILE)
-			*out = open(*red->file, O_WRONLY | O_TRUNC | O_CREAT, 0700);
-		if (red->red == DOUTFILE)
-			*out = open(*red->file, O_WRONLY | O_APPEND | O_CREAT, 0700);
-		if (red->red == INFILE)
-		{
-			*in = open(*red->file, O_RDONLY, 0700);
-			if (*in < 0 && !error)
-				error = *red->file;
-		}
-		if (red->red == HEREDOC)
-			*in = cmd.fd;
+		if (ft_redirection(cmd, lst->content, in, out))
+			return (1);
 		lst = lst->next;
 	}
-	if (error)
-		return (error_msg(1, 2, *red->file, "No such file and directory\n"));
 	return (0);
 }
 
@@ -50,16 +63,22 @@ int	redir_dup(t_command cmd)
 	in = 0;
 	out = 0;
 	if (redir_fd(cmd, &in, &out))
+	{
+		close(cmd.fd);
 		return (1);
-	if (in > 0)
-	{
-		dup2(in, 0);
-		close(in);
 	}
-	if (out > 0)
+	else
 	{
-		dup2(out, 1);
-		close(out);
+		if (in > 0)
+		{
+			dup2(in, 0);
+			close(in);
+		}
+		if (out > 0)
+		{
+			dup2(out, 1);
+			close(out);
+		}
 	}
 	return (0);
 }

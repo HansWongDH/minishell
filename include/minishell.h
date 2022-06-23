@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 13:21:43 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 14:34:05 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int			bin_pwd(t_command cmd);
 
 int			bin_cd(t_command cmd);
 
-void		free_cmdlist(t_cmdlist *cmd);
+void		free_cmdlist(t_cmdlist **cmd);
 /*For error handling*/
 int			error_msg(int i, int fd, char *args, char *s);
 void		*token_error(char **s);
