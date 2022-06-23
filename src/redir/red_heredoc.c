@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   red_heredoc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:32:09 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 16:04:28 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:11:37 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	heredoc_routine(char *s, char *file)
 	int		fd;
 
 	fd = open(file, O_CREAT | O_TRUNC | O_WRONLY, 0700);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	while (1)
 	{
 		str = readline("> ");
@@ -49,6 +51,8 @@ int	ft_heredoc(char *s, int i)
 
 	file = tempfile_gen(i);
 	pid = fork();
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	if (pid == 0)
 		heredoc_routine(s, file);
 	waitpid(pid, &status, 0);

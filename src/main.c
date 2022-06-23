@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 16:15:05 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 12:52:37 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ t_shell	init(void)
 	sh.ex = 0;
 	sh.dstdin = dup(0);
 	sh.dstdout = dup(1);
-    tcgetattr(STDIN_FILENO, &sh.ori);
-    tcgetattr(STDIN_FILENO, &sh.new);
-    sh.new.c_lflag &= ~ ECHOCTL;
-    tcsetattr(STDIN_FILENO, TCSAFLUSH, &sh.new);
+	tcgetattr(STDIN_FILENO, &sh.ori);
+	tcgetattr(STDIN_FILENO, &sh.new);
+	sh.new.c_lflag &= ~ ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &sh.new);
 	return (sh);
 }
 

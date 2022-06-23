@@ -6,7 +6,7 @@
 /*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:46:04 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 15:11:32 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 13:11:51 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	executor(t_command cmd, t_shell *sh)
 	exe = NULL;
 	arg = NULL;
 	arg = argumentextract(*cmd.cmd, cmd);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	while (execve(exe, arg, env) < 0)
 	{
 		exe = pathextract(*cmd.cmd, &i);
@@ -94,8 +96,8 @@ int	execute(t_command cmd, t_shell *sh)
 	int	status;
 
 	pid = fork();
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	if (pid == 0)
 		executor(cmd, sh);
 	waitpid(pid, &status, 0);

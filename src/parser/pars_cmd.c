@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/22 15:07:13 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 12:54:41 by echai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,8 +177,6 @@ int	parse_cmdline(t_cmdlist *lst, t_shell *sh)
 			if (!lst->next)
 				sh->i = -1;
 			pid = fork();
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
 			if (pid == 0)
 				return (child_create(lst, sh));
 			sh->i++;
