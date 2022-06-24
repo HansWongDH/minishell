@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_build.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:26:40 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/20 11:54:38 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 23:39:48 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	env_build(char **envp)
 	{
 		if (!ft_envcmp(envp[i], "OLDPWD"))
 			i++;
-		ft_lstadd_back(&g_env, ft_lstnew(envp[i]));
+		ft_lstadd_back(&g_env, ft_lstnew(ft_strdup(envp[i])));
 		i++;
 	}
 }

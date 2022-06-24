@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:05:55 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 20:56:24 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/23 22:51:03 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,28 @@
 void	pwd_change(char *oldpath, char *newpath)
 {
 	char	*oldpwd;
-	char	*newpwd;
+	char	*newpwd;	
 
-	oldpwd = ft_strjoin("OLDPWD=", oldpath);
-	newpwd = ft_strjoin("PWD=", newpath);
-	export_str(oldpwd);
-	export_str(newpwd);
-	free(oldpwd);
-	free(oldpath);
-	free(newpwd);
+	if (oldpath)
+	{
+		oldpwd = ft_strjoin("OLDPWD=", oldpath);
+		export_str(oldpwd);
+		free(oldpwd);
+		free(oldpath);
+	}
+	if (newpath)
+	{
+		newpwd = ft_strjoin("PWD=", newpath);
+		export_str(newpwd);
+		free(newpwd);
+		free(newpath);
+	}
 }
 
 int	change_dir(char *s)
 {
 	char	*dir;
-	char	buf[200];
+	char	*newdir;
 
 	if (!ft_strcmp(s, "-"))
 	{
@@ -38,11 +45,12 @@ int	change_dir(char *s)
 			return (error_msg(1, 2, "cd", ": OLDPWD not set"));
 	}
 	dir = ft_getenv("PWD");
-	if (!dir)
-		dir = getcwd(buf, 200);
+	// if (!dir)
+	// 	dir = getcwd(buf, 200);
 	if (chdir(s) < 0)
 		return (error_msg(1, 2, s, ": No such file or directory"));
-	pwd_change(dir, getcwd(buf, 200));
+	newdir = ft_getenv("PWD");
+	pwd_change(dir, newdir);
 	return (0);
 }
 

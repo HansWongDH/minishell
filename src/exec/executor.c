@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:46:04 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 14:56:32 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/24 01:15:25 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	execute(t_command cmd, t_shell *sh)
 	signal(SIGQUIT, SIG_IGN);
 	if (pid == 0)
 		executor(cmd, sh);
-	waitpid(pid, &status, 0);
+	waitpid(0, &status, 0);
 	if (WIFEXITED(status))
 		return (127);
 	return (0);

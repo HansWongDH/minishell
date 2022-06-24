@@ -1,0 +1,31 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/hansdhwong/minishell'
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/lexer/lexer_init.c -o src/lexer/lexer_init.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/lexer/token_utils.c -o src/lexer/token_utils.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/lexer/token_init.c -o src/lexer/token_init.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/lexer/cmdlist_init.c -o src/lexer/cmdlist_init.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/lexer/cmdlist_utils.c -o src/lexer/cmdlist_utils.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/parser/pars_quote.c -o src/parser/pars_quote.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/parser/pars_util.c -o src/parser/pars_util.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/parser/pars_cmd.c -o src/parser/pars_cmd.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/parser/pars_child.c -o src/parser/pars_child.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/env/env_expansion.c -o src/env/env_expansion.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/env/env_get.c -o src/env/env_get.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/env/env_build.c -o src/env/env_build.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/error/error_msg.c -o src/error/error_msg.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/error/free_memory.c -o src/error/free_memory.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/built-in/bin_export.c -o src/built-in/bin_export.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/built-in/bin_echo.c -o src/built-in/bin_echo.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/built-in/bin_env.c -o src/built-in/bin_env.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/built-in/bin_unset.c -o src/built-in/bin_unset.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/built-in/bin_exit.c -o src/built-in/bin_exit.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/built-in/bin_pwd.c -o src/built-in/bin_pwd.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/built-in/bin_cd.c -o src/built-in/bin_cd.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/exec/executor.c -o src/exec/executor.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/redir/red_dup.c -o src/redir/red_dup.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/redir/red_heredoc.c -o src/redir/red_heredoc.o
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -c src/signal/signal_handlers.c -o src/signal/signal_handlers.o
+make re -C libs/libft
+gcc  -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include -Iinclude -Ilibs/libft -o minishell src/main.c src/lexer/lexer_init.o src/lexer/token_utils.o src/lexer/token_init.o src/lexer/cmdlist_init.o src/lexer/cmdlist_utils.o src/parser/pars_quote.o src/parser/pars_util.o src/parser/pars_cmd.o src/parser/pars_child.o src/env/env_expansion.o src/env/env_get.o src/env/env_build.o src/error/error_msg.o src/error/free_memory.o src/built-in/bin_export.o src/built-in/bin_echo.o src/built-in/bin_env.o src/built-in/bin_unset.o src/built-in/bin_exit.o src/built-in/bin_pwd.o src/built-in/bin_cd.o src/exec/executor.o src/redir/red_dup.o src/redir/red_heredoc.o src/signal/signal_handlers.o  -Llibs/libft -lft -L/usr/include -L/usr/local/opt/readline/lib -lreadline 
+make: Leaving directory '/home/hansdhwong/minishell'
+ 

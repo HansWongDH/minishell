@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 13:04:50 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 17:52:04 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/23 23:40:55 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ void	remove_env(char *s)
 		{
 			key = lst;
 			g_env = lst->next;
+			free(key->content);
 			free(key);
 		}
 		if (!ft_envcmp(lst->next->content, s))
 		{
 			key = lst->next;
 			lst->next = key->next;
+			free(key->content);
 			free(key);
 		}
 		lst = lst->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_quote.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:42:26 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/20 12:52:40 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/23 22:27:33 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char	*quote_extract(char *s, int ex)
 	char	*ret;
 	char	*temp;
 	int		i;
+	int		j;
 	int		start;
 
 	i = 0;
@@ -34,7 +35,8 @@ char	*quote_extract(char *s, int ex)
 		if (is_quote(s[i]))
 		{
 			ret = ft_strjoinfree(ret, ft_substr(s, start, i - start));
-			temp = (ft_substr(s, i + 1, check_quote(s, &i, s[i])));
+			j = i + 1;
+			temp = (ft_substr(s, j, check_quote(s, &i, s[i])));
 			if (s[i] == '\"')
 				temp = env_extract(temp, 1, ex);
 			ret = ft_strjoinfree(ret, temp);

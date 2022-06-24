@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 17:18:11 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 15:44:28 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/25 03:15:19 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	ft_redirection(t_command cmd, t_redir *red, int *in, int *out)
 int	redir_fd(t_command cmd, int *in, int *out)
 {
 	t_list	*lst;
-	t_redir	*red;
 
 	lst = cmd.redir;
 	while (lst)

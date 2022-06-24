@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 17:50:24 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/24 01:56:34 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	(void)av;
-	sh = init();
 	env_build(envp);
 	while (1)
 	{
+		sh = init();
 		signal(SIGINT, &ctrl_c);
 		signal(SIGQUIT, SIG_IGN);
 		str = readline("Minishell⌲ ");

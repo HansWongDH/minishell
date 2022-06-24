@@ -1,0 +1,542 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Sat Jun 25 02:56:58 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+WSLENV = VSCODE_WSL_EXT_LOCATION/up
+# default
+.SHELLFLAGS := -c
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /home/hansdhwong/minishell
+# makefile
+SHELL = /bin/sh
+# makefile (from 'Makefile', line 26)
+RM = rm -f
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
+# environment
+_ = /home/hansdhwong/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/node
+# makefile (from 'Makefile', line 24)
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+XDG_DATA_DIRS = /usr/local/share:/usr/share:/var/lib/snapd/desktop
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from 'Makefile', line 57)
+OBJS = $(S_SRCS:.c=.o) 
+# environment
+VSCODE_CWD = /mnt/c/Users/hansd/AppData/Local/Programs/Microsoft VS Code
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /home/hansdhwong/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/program files (x86)/common files/oracle/java/javapath:/mnt/c/program files/common files/oracle/java/javapath:/mnt/d/program files (x86)/intel/intel(r) management engine components/icls/:/mnt/c/program files/intel/intel(r) management engine components/icls/:/mnt/c/windows/system32:/mnt/c/windows:/mnt/c/windows/system32/wbem:/mnt/c/windows/system32/windowspowershell/v1.0/:/mnt/c/windows/system32/openssh/:/mnt/d/program files (x86)/intel/intel(r) management engine components/dal:/mnt/d/program files/intel/intel(r) management engine components/dal:/mnt/d/program files (x86)/intel/intel(r) management engine components/ipt:/mnt/d/program files/intel/intel(r) management engine components/ipt:/mnt/c/windows/system32:/mnt/c/windows:/mnt/c/windows/system32/wbem:/mnt/c/windows/system32/windowspowershell/v1.0/:/mnt/c/windows/system32/openssh/:/mnt/c/mingw/bin:/mnt/c/program files/putty/:/mnt/c/program files/nodejs/:/mnt/c/program files/nvidia corporation/nvidia nvdlisr:/mnt/c/Users/hansd/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/hansd/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/hansd/AppData/Local/Programs/IPFS Desktop/resources/app.asar.unpacked/src/ipfs-on-path/scripts/bin-win:/mnt/c/Users/hansd/AppData/Roaming/npm:/snap/bin
+# makefile (from 'Makefile', line 39)
+ERR_DIR = src/error/
+# makefile (from 'Makefile', line 41)
+EXE_DIR = src/exec/
+# makefile (from 'Makefile', line 49)
+S_SRCS = $(addprefix $(LEX_DIR), lexer_init.c token_utils.c token_init.c cmdlist_init.c cmdlist_utils.c) $(addprefix $(PARS_DIR), pars_quote.c pars_util.c pars_cmd.c pars_child.c) $(addprefix $(ENV_DIR), env_expansion.c env_get.c env_build.c) $(addprefix $(ERR_DIR), error_msg.c free_memory.c) $(addprefix $(BIN_DIR), bin_export.c bin_echo.c bin_env.c bin_unset.c bin_exit.c bin_pwd.c bin_cd.c) $(addprefix $(EXE_DIR), executor.c) $(addprefix $(RED_DIR), red_dup.c red_heredoc.c) $(addprefix $(SIG_DIR), signal_handlers.c)
+# environment
+VSCODE_LOG_STACK = false
+# environment
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-d102cecc-27ad-4daa-9049-f30bc37f78fb.sock
+# makefile (from 'Makefile', line 34)
+LIB = -L$(LIBFT_DIR) -lft
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# makefile (from 'Makefile', line 33)
+LIBFT_DIR = libs/libft
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /home/hansdhwong/minishell
+# default
+.LOADED := 
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/hansdhwong
+# makefile (from 'Makefile', line 36)
+LEX_DIR = src/lexer/
+# makefile (from 'Makefile', line 42)
+RED_DIR = src/redir/
+# environment
+LOGNAME = hansdhwong
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 0
+# makefile (from 'Makefile', line 23)
+CC = gcc 
+# default
+MAKE_VERSION := 4.2.1
+# environment
+USER = hansdhwong
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from 'Makefile', line 43)
+SIG_DIR = src/signal/
+# makefile (from 'Makefile', line 17)
+NAME = minishell
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# makefile (from 'Makefile', line 25)
+LFLAGS = -L/usr/include -L/usr/local/opt/readline/lib -lreadline
+# environment
+VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/hansd/.vscode/extensions/ms-vscode-remote.remote-wsl-0.66.3
+# default
+MAKE_COMMAND := make
+# makefile (from 'Makefile', line 32)
+INC = -Iinclude -I$(LIBFT_DIR)
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# makefile (from 'Makefile', line 38)
+ENV_DIR = src/env/
+# makefile (from 'Makefile', line 44)
+MAIN = $(SRC_DIR)main.c
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# environment
+VSCODE_HANDLES_SIGPIPE = true
+# default
+MAKEFILES := 
+# makefile (from 'Makefile', line 35)
+SRC_DIR = src/
+# automatic
+<F = $(notdir $<)
+# makefile (from 'Makefile', line 40)
+BIN_DIR = src/built-in/
+# environment
+LC_ALL = C
+# environment
+HOSTTYPE = x86_64
+# automatic
+^F = $(notdir $^)
+# makefile (from 'Makefile', line 37)
+PARS_DIR = src/parser/
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# environment
+VSCODE_EXTHOST_WILL_SEND_SOCKET = true
+# environment
+WSL_DISTRO_NAME = Ubuntu
+# environment
+MOTD_SHOWN = update-motd
+# variable set hash-table stats:
+# Load=83/1024=8%, Rehash=0, Collisions=14/129=11%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 2, inode 12947848929183073): 10 files, no impossibilities.
+# src/lexer (device 2, inode 13229323905576973): 11 files, no impossibilities so far.
+# src/parser (device 2, inode 18577348463079542): 9 files, no impossibilities so far.
+
+# 30 files, no impossibilities in 3 directories.
+
+# Implicit Rules
+
+%.o: %.c
+#  recipe to execute (from 'Makefile', line 69):
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+src/parser/pars_child.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-25 02:56:41.4120126
+#  File has been updated.
+#  Successfully updated.
+
+src/lexer/cmdlist_init.o: src/lexer/cmdlist_init.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/lexer/cmdlist_init'
+#  Last modified 2022-06-24 16:05:46.7413011
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 69):
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+# Not a target:
+src/env/env_expansion.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/built-in/bin_echo.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/error/free_memory.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: minishell
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+
+# Not a target:
+src/built-in/bin_export.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/lexer/lexer_init.o: src/lexer/lexer_init.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/lexer/lexer_init'
+#  Last modified 2022-06-24 16:05:46.2460751
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 69):
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+.PHONY: all clean fclean re
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/error/error_msg.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/signal/signal_handlers.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/redir/red_dup.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-23 22:28:59.0402885
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/lexer/token_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-23 22:26:32.7098124
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/parser/pars_cmd.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-23 22:26:32.7128043
+#  File has been updated.
+#  Successfully updated.
+
+src/parser/pars_util.o: src/parser/pars_util.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/parser/pars_util'
+#  Last modified 2022-06-24 16:05:47.2305133
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 69):
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+# Not a target:
+src/exec/executor.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/lexer/cmdlist_init.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-24 01:53:46.6294648
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/built-in/bin_env.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/built-in/bin_exit.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+minishell: src/lexer/lexer_init.o src/lexer/token_utils.o src/lexer/token_init.o src/lexer/cmdlist_init.o src/lexer/cmdlist_utils.o src/parser/pars_quote.o src/parser/pars_util.o src/parser/pars_cmd.o src/parser/pars_child.o src/env/env_expansion.o src/env/env_get.o src/env/env_build.o src/error/error_msg.o src/error/free_memory.o src/built-in/bin_export.o src/built-in/bin_echo.o src/built-in/bin_env.o src/built-in/bin_unset.o src/built-in/bin_exit.o src/built-in/bin_pwd.o src/built-in/bin_cd.o src/exec/executor.o src/redir/red_dup.o src/redir/red_heredoc.o src/signal/signal_handlers.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-06-24 16:05:55.877947
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+#  recipe to execute (from 'Makefile', line 65):
+	@make re -C $(LIBFT_DIR)
+	@$(CC) $(CFLAGS) $(INC) -o $(NAME) $(MAIN) $(OBJS) $(LIB) $(LFLAGS) 
+	
+
+src/lexer/token_init.o: src/lexer/token_init.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/lexer/token_init'
+#  Last modified 2022-06-24 16:05:46.5703295
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 69):
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+# Not a target:
+src/lexer/lexer_init.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-24 01:53:58.8207392
+#  File has been updated.
+#  Successfully updated.
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 75):
+	@$(RM) $(NAME) $(B_NAME)
+	@make fclean -C $(LIBFT_DIR)
+
+# Not a target:
+src/built-in/bin_pwd.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/lexer/cmdlist_utils.o: src/lexer/cmdlist_utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/lexer/cmdlist_utils'
+#  Last modified 2022-06-24 16:05:46.8998914
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 69):
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+# Not a target:
+src/built-in/bin_unset.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/parser/pars_quote.o: src/parser/pars_quote.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/parser/pars_quote'
+#  Last modified 2022-06-24 16:05:47.0604621
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 69):
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/parser/pars_util.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-23 22:26:32.7147988
+#  File has been updated.
+#  Successfully updated.
+
+re: fclean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 71):
+	@$(RM) $(OBJS) $(B_OBJS)
+	@make clean -C $(LIBFT_DIR)
+
+src/parser/pars_child.o: src/parser/pars_child.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/parser/pars_child'
+#  Last modified 2022-06-24 16:05:47.565647
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := src/parser/pars_child.o
+# automatic
+# % := 
+# automatic
+# * := src/parser/pars_child
+# automatic
+# + := src/parser/pars_child.c
+# automatic
+# | := 
+# automatic
+# < := src/parser/pars_child.c
+# automatic
+# ^ := src/parser/pars_child.c
+# automatic
+# ? := src/parser/pars_child.c
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/17=12%
+#  recipe to execute (from 'Makefile', line 69):
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+# Not a target:
+src/env/env_build.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/lexer/token_init.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-18 00:03:49.3531006
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/env/env_get.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/built-in/bin_cd.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/lexer/cmdlist_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-18 00:03:32.2376071
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/redir/red_heredoc.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/parser/pars_quote.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-23 22:27:33.8943054
+#  File has been updated.
+#  Successfully updated.
+
+src/lexer/token_utils.o: src/lexer/token_utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/lexer/token_utils'
+#  Last modified 2022-06-24 16:05:46.4056237
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 69):
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+src/parser/pars_cmd.o: src/parser/pars_cmd.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/parser/pars_cmd'
+#  Last modified 2022-06-24 16:05:47.4030519
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 69):
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+# files hash-table stats:
+# Load=43/1024=4%, Rehash=0, Collisions=0/115=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 82 / storage = 1378 B / avg = 16 B
+# current buf: size = 8162 B / used = 1378 B / count = 82 / avg = 16 B
+
+# strcache performance: lookups = 115 / hit rate = 28%
+# hash-table stats:
+# Load=82/8192=1%, Rehash=0, Collisions=3/115=3%
+# Finished Make data base on Sat Jun 25 02:56:58 2022
+
+ 
