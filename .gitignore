@@ -12,3 +12,4 @@ minishell
 8*
 9*
 *.dSYM
+.vscode
