@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 11:38:32 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 21:03:45 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:11:49 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	free_cmdlist(t_cmdlist **cmd)
 		free2d((*cmd)->cmd.token);
 		free_linkedlist((*cmd)->cmd.args);
 		free_linkedlist2((*cmd)->cmd.redir);
-		// close((*cmd)->cmd.fd);
+		close((*cmd)->cmd.fd);
 		free(*cmd);
 		*cmd = lst;
 	}

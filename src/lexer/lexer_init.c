@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 21:39:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 20:30:55 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:13:52 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ t_cmdlist	*lexer_init(char *s)
 	i = token_length(s);
 	if (i <= 0)
 	{
-		export_exit(258);
+		if (i < 0)
+			export_exit(258);
 		return (NULL);
 	}
 	token = split_token(s, i);

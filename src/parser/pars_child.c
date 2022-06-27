@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 21:06:40 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:30:04 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,22 @@ void	fork_it(t_shell *sh)
 	close(sh->fd[1]);
 }
 
+int	waitforchild(void)
+{
+	int	status;
+
+	while (waitpid(-1, &status, 0) > 0)
+		;
+	if (WEXITSTATUS(status))
+		return (127);
+	else if (WIFSIGNALED(status))
+		return (128 + WTERMSIG(status));
+	return (0);
+}
+
 int	parse_cmdline(t_cmdlist *lst, t_shell *sh)
 {
 	int	pid;
-	int	status;
 
 	parse_heredoc(lst);
 	if (lst && !lst->next)
@@ -79,8 +91,7 @@ int	parse_cmdline(t_cmdlist *lst, t_shell *sh)
 			free_cmdlist(&lst);
 		}
 		close(sh->pipe);
-		while (waitpid(-1, &status, 0) > 0)
-			;
+		printf("%d\n",waitforchild());
 	}
 	return (0);
 }
