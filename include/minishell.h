@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/24 01:53:40 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:43:37 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_cmdlist {
 typedef struct s_shell {
 	int				dstdin;
 	int				dstdout;
-	int				readend;
+	int				pipe;
 	int				ex;
 	int				i;
 	int				fd[2];

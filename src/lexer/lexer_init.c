@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 21:39:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/24 01:53:58 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:44:10 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	cmd_tolower(t_cmdlist *lst)
 	if (cap)
 	{
 		if (!ft_strcmp(s, "unset") || !ft_strcmp(s, "export")
-			|| (!ft_strcmp(s, "exit")))
+			|| !ft_strcmp(s, "exit"))
 		{
 			free(s);
 			return (0);

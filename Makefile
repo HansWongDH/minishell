@@ -6,7 +6,11 @@
 #    By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/12 18:02:33 by wding-ha          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/06/23 22:28:59 by wding-ha         ###   ########.fr        #
+=======
+#    Updated: 2022/06/27 14:50:18 by wding-ha         ###   ########.fr        #
+>>>>>>> b591c35... revert and fixed
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +24,13 @@ NAME			= minishell
 #FLAGS#
 #######
 
+<<<<<<< HEAD
 CC				= gcc 
 CFLAGS			= -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include
+=======
+CC				= gcc -Wall -Wextra -Werror
+CFLAGS			= -I/usr/local/opt/readline/include
+>>>>>>> b591c35... revert and fixed
 LFLAGS			= -L/usr/include -L/usr/local/opt/readline/lib -lreadline
 RM				= rm -f
 

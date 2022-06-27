@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:05:55 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 22:51:03 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:43:55 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	change_dir(char *s)
 			return (error_msg(1, 2, "cd", ": OLDPWD not set"));
 	}
 	dir = ft_getenv("PWD");
-	// if (!dir)
-	// 	dir = getcwd(buf, 200);
 	if (chdir(s) < 0)
 		return (error_msg(1, 2, s, ": No such file or directory"));
 	newdir = ft_getenv("PWD");

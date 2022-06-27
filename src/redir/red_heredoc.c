@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:32:09 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 15:11:59 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:07:10 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,10 @@ void	parse_heredoc(t_cmdlist *cmd)
 		{
 			arr = red->content;
 			if (arr->red == HEREDOC)
+			{
+				close(lst->cmd.fd);
 				lst->cmd.fd = ft_heredoc(*arr->file, i);
+			}
 			red = red->next;
 		}
 		i++;

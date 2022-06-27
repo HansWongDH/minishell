@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 15:18:51 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:34:39 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int	parse_cmd(t_cmdlist *lst, t_shell *sh)
 
 	sh->dstdin = dup(0);
 	sh->dstdout = dup(1);
+	ret = 0;
 	if (redir_dup(lst->cmd))
 	{
 		free_cmdlist(&lst);
