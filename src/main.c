@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:40:17 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 16:21:49 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:57:51 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_shell	init(void)
 {
 	t_shell			sh;
 
-	sh.ex = 0;
 	sh.dstdin = dup(0);
 	sh.dstdout = dup(1);
 	tcgetattr(STDIN_FILENO, &sh.ori);
@@ -24,6 +23,14 @@ t_shell	init(void)
 	sh.new.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &sh.new);
 	return (sh);
+}
+
+void	reset_fd(t_shell sh)
+{
+	dup2(sh.dstdin, 0);
+	close(sh.dstdin);
+	dup2(sh.dstdout, 1);
+	close(sh.dstdout);
 }
 
 /**
@@ -52,10 +59,11 @@ int	main(int ac, char **av, char **envp)
 		if (!str)
 			break ;
 		add_history(str);
-		list = lexer_init(str, &sh);
+		list = lexer_init(str);
 		if (list)
-			sh.ex = parse_cmdline(list, &sh);
+			parse_cmdline(list, &sh);
 		free(str);
+		reset_fd(sh);
 	}
 	system("leaks minishell");
 }

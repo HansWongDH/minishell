@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 15:34:39 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:51:10 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	set_cmd(t_cmdlist *cmd)
  * @param ex Exit status
  * @return int 
  */
-int	check_builtin(t_command cmd, int ex)
+int	check_builtin(t_command cmd)
 {
 	char	*s;
 
@@ -101,7 +101,7 @@ int	check_builtin(t_command cmd, int ex)
 	if (!ft_strcmp(s, "env"))
 		return (bin_env(cmd));
 	if (!ft_strcmp(s, "exit"))
-		return (bin_exit(cmd, ex));
+		return (bin_exit(cmd));
 	return (-1);
 }
 
@@ -116,8 +116,6 @@ int	parse_cmd(t_cmdlist *lst, t_shell *sh)
 {
 	int		ret;
 
-	sh->dstdin = dup(0);
-	sh->dstdout = dup(1);
 	ret = 0;
 	if (redir_dup(lst->cmd))
 	{
@@ -126,14 +124,10 @@ int	parse_cmd(t_cmdlist *lst, t_shell *sh)
 	}
 	if (lst->cmd.cmd)
 	{
-		ret = check_builtin(lst->cmd, sh->ex);
+		ret = check_builtin(lst->cmd);
 		if (ret < 0)
 			ret = execute(lst->cmd, sh);
 	}
-	dup2(sh->dstdin, 0);
-	close(sh->dstdin);
-	dup2(sh->dstdout, 1);
-	close(sh->dstdout);
 	free_cmdlist(&lst);
 	return (ret);
 }

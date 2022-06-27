@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 21:39:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 15:44:10 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:30:55 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,20 @@ int	cmd_tolower(t_cmdlist *lst)
  * @param list List 
  * @param ex 
  */
-void	cmdlist_expansion(t_cmdlist *list, int ex)
+void	cmdlist_expansion(t_cmdlist *list)
 {
 	t_cmdlist	*temp;
 
 	temp = list;
 	while (temp)
 	{
-		env_treatment(temp->cmd.token, ex);
-		quote_treatment(temp->cmd.token, ex);
+		env_treatment(temp->cmd.token);
+		quote_treatment(temp->cmd.token);
 		temp = temp->next;
 	}
 }
 
-t_cmdlist	*lexer_init(char *s, t_shell *sh)
+t_cmdlist	*lexer_init(char *s)
 {
 	int			i;
 	char		**token;
@@ -69,7 +69,7 @@ t_cmdlist	*lexer_init(char *s, t_shell *sh)
 	i = token_length(s);
 	if (i <= 0)
 	{
-		sh->ex = i * i;
+		export_exit(258);
 		return (NULL);
 	}
 	token = split_token(s, i);
@@ -77,8 +77,8 @@ t_cmdlist	*lexer_init(char *s, t_shell *sh)
 	if (!lst)
 		return (NULL);
 	set_cmd(lst);
-	cmdlist_expansion(lst, sh->ex);
+	cmdlist_expansion(lst);
 	if (lst->cmd.cmd)
-		sh->ex = cmd_tolower(lst);
+		cmd_tolower(lst);
 	return (lst);
 }

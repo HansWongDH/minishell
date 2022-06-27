@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:46:04 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/24 01:15:25 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:59:25 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char	**listto2d(void)
 	i = 0;
 	while (lst)
 	{
-		ret[i] = ft_strdup(lst->content);
+		if (ft_envcmp(lst->content, "?"))
+			ret[i] = ft_strdup(lst->content);
 		lst = lst->next;
 	}
 	return (ret);

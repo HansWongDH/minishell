@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 15:43:37 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:07:01 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct s_shell {
 	int				dstdin;
 	int				dstdout;
 	int				pipe;
-	int				ex;
 	int				i;
 	int				fd[2];
 	struct termios	ori;
@@ -102,17 +101,17 @@ char		**ft_strjoin2d(char **args, char *s, int i);
 char		*ft_combine_key(char *s1, char *s2, char c);
 
 /*Quote removal and expansion of environmental variable*/
-void		quote_treatment(char **s, int ex);
-void		env_treatment(char **s, int ex);
-char		*env_extract(char *s, int qt, int ex);
+void		quote_treatment(char **s);
+void		env_treatment(char **s);
+char		*env_extract(char *s, int qt);
 char		*ft_getenv(char *s);
-void		cmdlist_expansion(t_cmdlist *list, int ex);
+void		cmdlist_expansion(t_cmdlist *list);
 void		set_cmd(t_cmdlist *cmd);
 int			parse_cmd(t_cmdlist *lst, t_shell *sh);
 void		env_build(char **envp);
 
 /*lexer initalization*/
-t_cmdlist	*lexer_init(char *s, t_shell *sh);
+t_cmdlist	*lexer_init(char *s);
 
 /*built-in : export*/
 int			ft_envcmp(const char *s1, const char *s2);
@@ -128,7 +127,7 @@ void		remove_env(char *s);
 /*built-in : env*/
 int			bin_env(t_command cmd);
 
-int			bin_exit(t_command cmd, int ex);
+int			bin_exit(t_command cmd);
 
 int			bin_pwd(t_command cmd);
 
@@ -143,7 +142,8 @@ int			execute(t_command cmd, t_shell *sh);
 int			redir_dup(t_command cmd);
 void		parse_heredoc(t_cmdlist *cmd);
 int			parse_cmdline(t_cmdlist *lst, t_shell *sh);
-int			check_builtin(t_command cmd, int ex);
+int			check_builtin(t_command cmd);
+void		export_exit(int i);
 t_shell		init(void);
 
 /* For signal handling */

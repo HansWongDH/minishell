@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 16:05:32 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 15:43:59 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:02:11 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	export_noargs(void)
 	export = g_env;
 	while (export)
 	{
-		export_print(export->content);
+		if (ft_envcmp(export->content, "?"))
+			export_print(export->content);
 		if (export->next && !ft_envcmp(export->next->content, "PWD"))
 		{
 			s = ft_getenv("OLDPWD");

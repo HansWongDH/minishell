@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 17:53:21 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 18:52:04 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:34:42 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,23 @@ int	exit_number(char *s)
 	return (1);
 }
 
-int	bin_exit(t_command cmd, int ex)
+int	get_exit(void)
+{
+	char	*s;
+	int		i;
+
+	s = ft_getenv("?");
+	i = ft_atoi(s);
+	free(s);
+	return (i);
+}
+
+int	bin_exit(t_command cmd)
 {
 	t_list	*lst;
+	int		ex;
 
+	ex = get_exit();
 	lst = cmd.args;
 	if (!lst)
 		exit(error_msg(ex, 2, "", "exit"));

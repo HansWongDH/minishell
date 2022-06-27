@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 03:15:11 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/21 13:24:10 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:25:13 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int	error_msg(int i, int fd, char *args, char *s)
 void	*token_error(char **s)
 {
 	free2d(s);
+	export_exit(258);
 	return (NULL);
 }

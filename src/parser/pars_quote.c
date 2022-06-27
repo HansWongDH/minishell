@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:42:26 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 22:27:33 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:58:30 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @param ex 
  * @return char* 
  */
-char	*quote_extract(char *s, int ex)
+char	*quote_extract(char *s)
 {
 	char	*ret;
 	char	*temp;
@@ -38,7 +38,7 @@ char	*quote_extract(char *s, int ex)
 			j = i + 1;
 			temp = (ft_substr(s, j, check_quote(s, &i, s[i])));
 			if (s[i] == '\"')
-				temp = env_extract(temp, 1, ex);
+				temp = env_extract(temp, 1);
 			ret = ft_strjoinfree(ret, temp);
 			start = i + 1;
 		}
@@ -54,7 +54,7 @@ char	*quote_extract(char *s, int ex)
  * @param s 
  * @param ex 
  */
-void	quote_treatment(char **s, int ex)
+void	quote_treatment(char **s)
 {
 	int		i;
 	char	*temp;
@@ -64,7 +64,7 @@ void	quote_treatment(char **s, int ex)
 	{
 		if (ft_strchr(s[i], '\'') || ft_strchr(s[i], '\"'))
 		{
-			temp = quote_extract(s[i], ex);
+			temp = quote_extract(s[i]);
 			free(s[i]);
 			s[i] = ft_strdup(temp);
 			free(temp);

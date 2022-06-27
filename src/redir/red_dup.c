@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 17:18:11 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 16:23:42 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:04:16 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,7 @@ int	redir_dup(t_command cmd)
 	in = 0;
 	out = 0;
 	if (redir_fd(cmd, &in, &out))
-	{
-		close(cmd.fd);
 		return (1);
-	}
 	else
 	{
 		if (in > 0)
