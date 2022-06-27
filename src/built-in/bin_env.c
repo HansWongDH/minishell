@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bin_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echai <echai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:30:53 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 13:24:40 by echai            ###   ########.fr       */
+/*   Updated: 2022/06/27 15:54:30 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	bin_env(t_command cmd)
 	lst = g_env;
 	while (lst)
 	{
-		printf("%s\n", (char *)lst->content);
+		if (ft_envcmp((char *)lst->content, "?"))
+			printf("%s\n", (char *)lst->content);
 		lst = lst->next;
 	}
 	return (0);
