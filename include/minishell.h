@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/07/04 15:01:15 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/04 20:35:34 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ int			parse_cmdline(t_cmdlist *lst, t_shell *sh);
 int			check_builtin(t_command cmd);
 void		export_exit(int i);
 t_shell		init(void);
+int			waitforchild(int pid);
 
 /* For signal handling */
 void		ctrl_c(int signo);
