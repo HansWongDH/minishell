@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:36:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 20:07:01 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:01:15 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void		cmdlist_expansion(t_cmdlist *list);
 void		set_cmd(t_cmdlist *cmd);
 int			parse_cmd(t_cmdlist *lst, t_shell *sh);
 void		env_build(char **envp);
+char		*add_quote_heredoc(char *s);
 
 /*lexer initalization*/
 t_cmdlist	*lexer_init(char *s);

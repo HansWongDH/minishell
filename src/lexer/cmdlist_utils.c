@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 13:22:58 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/09 14:57:56 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:01:11 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,6 @@ void	ft_cmdadd_back(t_cmdlist **lst, t_cmdlist *new)
 	}
 }
 
-void	free2d(char **s)
-{
-	int	i;
-
-	i = 0;
-	if (s)
-	{
-		while (s[i])
-		{
-			free(s[i]);
-			i++;
-		}
-		free(s[i]);
-		free(s);
-	}
-}
-
 int	parse_symbol(char *s)
 {
 	if (!ft_strcmp(s, ">"))
@@ -81,4 +64,22 @@ int	parse_symbol(char *s)
 	if (!ft_strcmp(s, "|"))
 		return (PIPE);
 	return (0);
+}
+
+char	*add_quote_heredoc(char *s)
+{
+	char	*ret;
+	int		i;
+
+	i = 1;
+	ret = ft_calloc(sizeof(char *), ft_strlen(ret) + 3);
+	ret[0] = '\'';
+	while (*s)
+	{
+		ret[i] = *s;
+		i++;
+		s++;
+	}
+	ret[i] = '\'';
+	return (ret);
 }

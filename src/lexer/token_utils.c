@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:46:16 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/21 13:28:06 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:47:38 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,21 @@ char	*split_symbol(char *s, int *i)
 	len = check_symbol(s, i, s[*i]);
 	ret = ft_substr(s, start, len);
 	return (ret);
+}
+
+void	free2d(char **s)
+{
+	int	i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i])
+		{
+			free(s[i]);
+			i++;
+		}
+		free(s[i]);
+		free(s);
+	}
 }

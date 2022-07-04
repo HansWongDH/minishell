@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:32:31 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/24 01:53:45 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:59:44 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,19 @@ void	command_table_init(char **s, int *i, t_command *cmd)
 {
 	int			start;
 	int			len;
+	char		*temp;
 
 	start = *i;
 	while (parse_symbol(s[*i]) != PIPE && s[*i])
+	{
+		if (parse_symbol(s[*i]) == HEREDOC)
+		{
+			temp = add_quote_heredoc(s[*i + 1]);
+			free(s[*i + 1]);
+			s[*i + 1] = temp;
+		}
 		(*i)++;
+	}
 	len = *i - start;
 	cmd->token = ft_divide(s, len, start);
 }
