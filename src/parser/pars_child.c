@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/07/04 14:10:46 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:24:12 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ int	child_create(t_cmdlist *lst, t_shell *sh)
 	if (sh->i != -1)
 		dup2(sh->fd[1], 1);
 	if (sh->i != 0)
-	{
-		dup2(sh->pipe, 0);
-		close(sh->pipe);
-	}
+		dup2(sh->fd[0], 0);
 	close(sh->fd[0]);
 	close(sh->fd[1]);
 	exit (parse_cmdchild(lst, sh));
@@ -52,22 +49,23 @@ void	fork_it(t_cmdlist *lst, t_shell *sh)
 	while (lst)
 	{
 		pipe(sh->fd);
+		if (sh->i > 0)
+		{
+			dup2(sh->pipe, sh->fd[0]);
+			close(sh->pipe);
+		}
 		if (!lst->next)
-		sh->i = -1;
+			sh->i = -1;
 		pid = fork();
 		if (pid == 0)
 			exit(child_create(lst, sh));
-		close(sh->pipe);
 		sh->i++;
-		if (sh->i > 0)
-		{
-			close(sh->pipe);
-			sh->pipe = dup(sh->fd[0]);
-		}
+		sh->pipe = dup(sh->fd[0]);
 		close(sh->fd[0]);
 		close(sh->fd[1]);
 		free_cmdlist(&lst);
 	}
+	close(sh->pipe);
 }
 
 int	waitforchild(void)
