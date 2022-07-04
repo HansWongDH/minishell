@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:32:09 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 15:07:10 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:05:41 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ int	ft_heredoc(char *s, int i)
 	signal(SIGQUIT, SIG_IGN);
 	if (pid == 0)
 		heredoc_routine(s, file);
-	free(file);
 	waitpid(pid, &status, 0);
 	fd = open(file, O_RDONLY, 0700);
 	unlink(file);
+	free(file);
 	return (fd);
 }
 

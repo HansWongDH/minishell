@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 21:30:04 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:10:46 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,30 @@ int	child_create(t_cmdlist *lst, t_shell *sh)
 	exit (parse_cmdchild(lst, sh));
 }
 
-void	fork_it(t_shell *sh)
+void	fork_it(t_cmdlist *lst, t_shell *sh)
 {
-	sh->i++;
-	if (sh->i > 0)
+	int	pid;
+
+	sh->i = 0;
+	while (lst)
 	{
+		pipe(sh->fd);
+		if (!lst->next)
+		sh->i = -1;
+		pid = fork();
+		if (pid == 0)
+			exit(child_create(lst, sh));
 		close(sh->pipe);
-		sh->pipe = dup(sh->fd[0]);
+		sh->i++;
+		if (sh->i > 0)
+		{
+			close(sh->pipe);
+			sh->pipe = dup(sh->fd[0]);
+		}
+		close(sh->fd[0]);
+		close(sh->fd[1]);
+		free_cmdlist(&lst);
 	}
-	close(sh->fd[0]);
-	close(sh->fd[1]);
 }
 
 int	waitforchild(void)
@@ -71,27 +85,12 @@ int	waitforchild(void)
 
 int	parse_cmdline(t_cmdlist *lst, t_shell *sh)
 {
-	int	pid;
-
 	parse_heredoc(lst);
 	if (lst && !lst->next)
 		return (parse_cmd(lst, sh));
 	else
 	{
-		sh->i = 0;
-		while (lst)
-		{
-			pipe(sh->fd);
-			if (!lst->next)
-				sh->i = -1;
-			pid = fork();
-			if (pid == 0)
-				exit(child_create(lst, sh));
-			fork_it(sh);
-			free_cmdlist(&lst);
-		}
-		close(sh->pipe);
-		printf("%d\n",waitforchild());
+		fork_it(lst, sh);
+		return (waitforchild());
 	}
-	return (0);
 }
