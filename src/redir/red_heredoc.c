@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:32:09 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/07/04 14:05:41 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:41:23 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	heredoc_routine(char *s, char *file)
 		str = readline("> ");
 		if (!ft_strcmp(str, s))
 			break ;
+		if (ft_strchr(str, '$'))
+			str = env_extract(str, 1);
 		ft_putstr_fd((ft_strjoinfree(str, ft_strdup("\n"))), fd);
 	}
 	close(fd);
@@ -51,7 +53,7 @@ int	ft_heredoc(char *s, int i)
 
 	file = tempfile_gen(i);
 	pid = fork();
-	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, ctrl_c);
 	signal(SIGQUIT, SIG_IGN);
 	if (pid == 0)
 		heredoc_routine(s, file);
