@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 02:23:26 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/23 19:05:28 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/06 17:43:34 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,15 @@ char	**ft_strjoin2d(char **args, char *s, int i)
 		args++;
 	}
 	return (ret);
+}
+
+int	waitforchild(int pid)
+{
+	int	status;
+
+	while (waitpid(pid, &status, 0) > 0)
+		;
+	if (WIFSIGNALED(status))
+		return (128 + WTERMSIG(status));
+	return (WEXITSTATUS(status));
 }

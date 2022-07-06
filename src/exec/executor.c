@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:46:04 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/07/04 20:39:49 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:10:14 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ char	*pathextract(char *s, int *i)
 
 	start = *i;
 	ev = ft_getenv("PATH");
+	if (!ev)
+	{
+		error_msg(127, 2, s, ": No such file or directory");
+		return (NULL);
+	}
 	while (ev[*i] && ev[*i] != ':')
 		(*i)++;
 	len = *i - start;
@@ -46,7 +51,10 @@ char	*pathextract(char *s, int *i)
 	if (ev[*i] == ':')
 		(*i)++;
 	if (!ev[*i])
+	{
+		error_msg(127, 2, s, ": command not found");
 		return (NULL);
+	}
 	return (ret);
 }
 
@@ -85,7 +93,7 @@ int	executor(t_command cmd, t_shell *sh)
 	{
 		exe = pathextract(*cmd.cmd, &i);
 		if (!exe)
-			exit(error_msg(127, 2, *cmd.cmd, ": command not found"));
+			exit(127);
 	}
 	exit(0);
 }

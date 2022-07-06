@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:27:02 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/07/04 20:37:33 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/06 17:56:51 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,21 @@ int	child_create(t_cmdlist *lst, t_shell *sh)
 		dup2(sh->fd[1], 1);
 	if (sh->i != 0)
 		dup2(sh->fd[0], 0);
+	close(sh->prevfd);
 	close(sh->fd[0]);
 	close(sh->fd[1]);
 	exit (parse_cmdchild(lst, sh));
 }
 
-void	fork_it(t_cmdlist *lst, t_shell *sh)
+void	dup_and_close(t_shell *sh)
+{
+	sh->pipe = dup(sh->prevfd);
+	close(sh->prevfd);
+	close(sh->fd[0]);
+	close(sh->fd[1]);
+}
+
+int	fork_it(t_cmdlist *lst, t_shell *sh)
 {
 	int	pid;
 
@@ -49,6 +58,7 @@ void	fork_it(t_cmdlist *lst, t_shell *sh)
 	while (lst)
 	{
 		pipe(sh->fd);
+		sh->prevfd = dup(sh->fd[0]);
 		if (sh->i > 0)
 		{
 			dup2(sh->pipe, sh->fd[0]);
@@ -58,37 +68,28 @@ void	fork_it(t_cmdlist *lst, t_shell *sh)
 			sh->i = -1;
 		pid = fork();
 		if (pid == 0)
-			exit(child_create(lst, sh));
+			child_create(lst, sh);
 		sh->i++;
-		sh->pipe = dup(sh->fd[0]);
-		close(sh->fd[0]);
-		close(sh->fd[1]);
+		dup_and_close(sh);
 		free_cmdlist(&lst);
 	}
 	close(sh->pipe);
-}
-
-int	waitforchild(int pid)
-{
-	int	status;
-
-	while (waitpid(pid, &status, 0) > 0)
-		;
-	if (WEXITSTATUS(status))
-		return (WEXITSTATUS(status));
-	else if (WIFSIGNALED(status))
-		return (128 + WTERMSIG(status));
-	return (0);
+	return (pid);
 }
 
 int	parse_cmdline(t_cmdlist *lst, t_shell *sh)
 {
+	int	pid;
+	int	status;
+
 	parse_heredoc(lst);
 	if (lst && !lst->next)
 		return (parse_cmd(lst, sh));
 	else
 	{
-		fork_it(lst, sh);
-		return (waitforchild(-1));
+		pid = fork_it(lst, sh);
+		status = waitforchild(pid);
+		waitforchild(-1);
+		return (status);
 	}
 }

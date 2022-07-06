@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:15:22 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/21 16:46:02 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:47:33 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	echo_newline(char *s)
 	int	i;
 
 	i = 0;
+	if (!s[i])
+		return (1);
 	if (s[i] == '-')
 		i++;
 	while (s[i] == 'n')

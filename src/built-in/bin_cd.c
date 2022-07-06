@@ -6,7 +6,7 @@
 /*   By: wding-ha <wding-ha@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:05:55 by wding-ha          #+#    #+#             */
-/*   Updated: 2022/06/27 15:43:55 by wding-ha         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:11:35 by wding-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int	change_dir(char *s)
 	}
 	dir = ft_getenv("PWD");
 	if (chdir(s) < 0)
+	{
+		free(dir);
 		return (error_msg(1, 2, s, ": No such file or directory"));
+	}
 	newdir = ft_getenv("PWD");
 	pwd_change(dir, newdir);
 	return (0);
