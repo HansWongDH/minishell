@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun 25 02:56:58 2022
+# Make data base, printed on Wed Jul  6 18:03:21 2022
 
 # Variables
 
@@ -20,6 +20,8 @@ WSLENV = VSCODE_WSL_EXT_LOCATION/up
 .SHELLFLAGS := -c
 # environment
 VSCODE_LOG_NATIVE = false
+# environment
+NVM_INC = /home/echai/.nvm/versions/node/v14.19.3/include/node
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -27,7 +29,7 @@ VSCODE_LOG_NATIVE = false
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /home/hansdhwong/minishell
+CURDIR := /home/echai/Documents/42/minishell
 # makefile
 SHELL = /bin/sh
 # makefile (from 'Makefile', line 26)
@@ -35,61 +37,73 @@ RM = rm -f
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
 # environment
-_ = /home/hansdhwong/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/node
+_ = /home/echai/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/node
 # makefile (from 'Makefile', line 24)
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3 -I/usr/local/opt/readline/include
+CFLAGS = -I/usr/local/opt/readline/include
 # makefile (from 'Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
-XDG_DATA_DIRS = /usr/local/share:/usr/share:/var/lib/snapd/desktop
-# environment
 VSCODE_VERBOSE_LOGGING = true
 # makefile (from 'Makefile', line 57)
 OBJS = $(S_SRCS:.c=.o) 
 # environment
-VSCODE_CWD = /mnt/c/Users/hansd/AppData/Local/Programs/Microsoft VS Code
+VSCODE_CWD = /mnt/c/Users/echai/AppData/Local/Programs/Microsoft VS Code
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/hansdhwong/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/program files (x86)/common files/oracle/java/javapath:/mnt/c/program files/common files/oracle/java/javapath:/mnt/d/program files (x86)/intel/intel(r) management engine components/icls/:/mnt/c/program files/intel/intel(r) management engine components/icls/:/mnt/c/windows/system32:/mnt/c/windows:/mnt/c/windows/system32/wbem:/mnt/c/windows/system32/windowspowershell/v1.0/:/mnt/c/windows/system32/openssh/:/mnt/d/program files (x86)/intel/intel(r) management engine components/dal:/mnt/d/program files/intel/intel(r) management engine components/dal:/mnt/d/program files (x86)/intel/intel(r) management engine components/ipt:/mnt/d/program files/intel/intel(r) management engine components/ipt:/mnt/c/windows/system32:/mnt/c/windows:/mnt/c/windows/system32/wbem:/mnt/c/windows/system32/windowspowershell/v1.0/:/mnt/c/windows/system32/openssh/:/mnt/c/mingw/bin:/mnt/c/program files/putty/:/mnt/c/program files/nodejs/:/mnt/c/program files/nvidia corporation/nvidia nvdlisr:/mnt/c/Users/hansd/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/hansd/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/hansd/AppData/Local/Programs/IPFS Desktop/resources/app.asar.unpacked/src/ipfs-on-path/scripts/bin-win:/mnt/c/Users/hansd/AppData/Roaming/npm:/snap/bin
+PATH = /home/echai/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/remote-cli:/home/echai/.local/share/pnpm:/home/echai/.nvm/versions/node/v14.19.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Users/echai/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/echai/AppData/Local/Programs/Microsoft VS Code/bin
 # makefile (from 'Makefile', line 39)
 ERR_DIR = src/error/
-# makefile (from 'Makefile', line 41)
-EXE_DIR = src/exec/
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# makefile (from 'Makefile', line 40)
+BIN_DIR = src/built-in/
+# environment
+PNPM_HOME = /home/echai/.local/share/pnpm
 # makefile (from 'Makefile', line 49)
 S_SRCS = $(addprefix $(LEX_DIR), lexer_init.c token_utils.c token_init.c cmdlist_init.c cmdlist_utils.c) $(addprefix $(PARS_DIR), pars_quote.c pars_util.c pars_cmd.c pars_child.c) $(addprefix $(ENV_DIR), env_expansion.c env_get.c env_build.c) $(addprefix $(ERR_DIR), error_msg.c free_memory.c) $(addprefix $(BIN_DIR), bin_export.c bin_echo.c bin_env.c bin_unset.c bin_exit.c bin_pwd.c bin_cd.c) $(addprefix $(EXE_DIR), executor.c) $(addprefix $(RED_DIR), red_dup.c red_heredoc.c) $(addprefix $(SIG_DIR), signal_handlers.c)
 # environment
+NVM_BIN = /home/echai/.nvm/versions/node/v14.19.3/bin
+# environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-d102cecc-27ad-4daa-9049-f30bc37f78fb.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-db721c74-b8bf-40ba-9ed7-277f51103530.sock
 # makefile (from 'Makefile', line 34)
 LIB = -L$(LIBFT_DIR) -lft
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # makefile (from 'Makefile', line 33)
 LIBFT_DIR = libs/libft
+# environment
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
 # automatic
 %F = $(notdir $%)
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-PWD = /home/hansdhwong/minishell
+PWD = /home/echai/Documents/42/minishell
 # default
 .LOADED := 
 # environment
+WSL_INTEROP = /run/WSL/488_interop
+# environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /home/hansdhwong
+HOME = /home/echai
 # makefile (from 'Makefile', line 36)
 LEX_DIR = src/lexer/
 # makefile (from 'Makefile', line 42)
 RED_DIR = src/redir/
 # environment
-LOGNAME = hansdhwong
+LOGNAME = echai
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+NVM_CD_FLAGS = -q
+# environment
+ZSH = /home/echai/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -103,39 +117,47 @@ MAKECMDGOALS := all
 # environment
 SHLVL = 0
 # makefile (from 'Makefile', line 23)
-CC = gcc 
+CC = gcc -Wall -Wextra -Werror
 # default
 MAKE_VERSION := 4.2.1
 # environment
-USER = hansdhwong
+USER = echai
 # makefile
 .DEFAULT_GOAL := all
 # makefile (from 'Makefile', line 43)
 SIG_DIR = src/signal/
 # makefile (from 'Makefile', line 17)
 NAME = minishell
+# environment
+LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
+# makefile (from 'Makefile', line 38)
+ENV_DIR = src/env/
 # makefile (from 'Makefile', line 25)
 LFLAGS = -L/usr/include -L/usr/local/opt/readline/lib -lreadline
 # environment
-VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/hansd/.vscode/extensions/ms-vscode-remote.remote-wsl-0.66.3
+VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/echai/.vscode/extensions/ms-vscode-remote.remote-wsl-0.66.3
 # default
 MAKE_COMMAND := make
 # makefile (from 'Makefile', line 32)
 INC = -Iinclude -I$(LIBFT_DIR)
+# environment
+OLDPWD = /mnt/c/Users/echai/AppData/Local/Programs/Microsoft VS Code
 # default
 .VARIABLES := 
 # automatic
 *F = $(notdir $*)
+# makefile (from 'Makefile', line 41)
+EXE_DIR = src/exec/
 # makefile
 MAKEFLAGS = pqrR
 # environment
 MFLAGS = -pqrR
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
-# makefile (from 'Makefile', line 38)
-ENV_DIR = src/env/
+# environment
+NVM_DIR = /home/echai/.nvm
 # makefile (from 'Makefile', line 44)
 MAIN = $(SRC_DIR)main.c
 # automatic
@@ -150,8 +172,8 @@ MAKEFILES :=
 SRC_DIR = src/
 # automatic
 <F = $(notdir $<)
-# makefile (from 'Makefile', line 40)
-BIN_DIR = src/built-in/
+# environment
+PAGER = less
 # environment
 LC_ALL = C
 # environment
@@ -174,10 +196,8 @@ TERM = xterm-256color
 VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 # environment
 WSL_DISTRO_NAME = Ubuntu
-# environment
-MOTD_SHOWN = update-motd
 # variable set hash-table stats:
-# Load=83/1024=8%, Rehash=0, Collisions=14/129=11%
+# Load=93/1024=9%, Rehash=0, Collisions=20/139=14%
 
 # Pattern-specific Variable Values
 
@@ -185,11 +205,10 @@ MOTD_SHOWN = update-motd
 
 # Directories
 
-# . (device 2, inode 12947848929183073): 10 files, no impossibilities.
-# src/lexer (device 2, inode 13229323905576973): 11 files, no impossibilities so far.
-# src/parser (device 2, inode 18577348463079542): 9 files, no impossibilities so far.
+# . (device 2096, inode 140157): 9 files, no impossibilities.
+# src/lexer (device 2096, inode 141406): 8 files, no impossibilities so far.
 
-# 30 files, no impossibilities in 3 directories.
+# 17 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -201,17 +220,10 @@ MOTD_SHOWN = update-motd
 
 # Files
 
-# Not a target:
-src/parser/pars_child.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-06-25 02:56:41.4120126
-#  File has been updated.
-#  Successfully updated.
-
 src/lexer/cmdlist_init.o: src/lexer/cmdlist_init.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/lexer/cmdlist_init'
-#  Last modified 2022-06-24 16:05:46.7413011
+#  Last modified 2022-07-06 18:02:46.479617
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 69):
@@ -254,7 +266,7 @@ src/built-in/bin_export.o:
 src/lexer/lexer_init.o: src/lexer/lexer_init.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/lexer/lexer_init'
-#  Last modified 2022-06-24 16:05:46.2460751
+#  Last modified 2022-07-06 18:02:46.369617
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 69):
@@ -263,6 +275,7 @@ src/lexer/lexer_init.o: src/lexer/lexer_init.c
 .PHONY: all clean fclean re
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
 # Not a target:
@@ -286,32 +299,22 @@ src/redir/red_dup.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-23 22:28:59.0402885
+#  Last modified 2022-07-06 18:02:35.109617
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/lexer/token_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-23 22:26:32.7098124
+#  Last modified 2022-07-06 18:02:35.109617
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-src/parser/pars_cmd.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-06-23 22:26:32.7128043
-#  File has been updated.
-#  Successfully updated.
-
-src/parser/pars_util.o: src/parser/pars_util.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'src/parser/pars_util'
-#  Last modified 2022-06-24 16:05:47.2305133
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 69):
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+src/parser/pars_util.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/exec/executor.o:
@@ -322,7 +325,7 @@ src/exec/executor.o:
 # Not a target:
 src/lexer/cmdlist_init.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-24 01:53:46.6294648
+#  Last modified 2022-07-06 18:02:35.109617
 #  File has been updated.
 #  Successfully updated.
 
@@ -340,7 +343,7 @@ src/built-in/bin_exit.o:
 
 minishell: src/lexer/lexer_init.o src/lexer/token_utils.o src/lexer/token_init.o src/lexer/cmdlist_init.o src/lexer/cmdlist_utils.o src/parser/pars_quote.o src/parser/pars_util.o src/parser/pars_cmd.o src/parser/pars_child.o src/env/env_expansion.o src/env/env_get.o src/env/env_build.o src/error/error_msg.o src/error/free_memory.o src/built-in/bin_export.o src/built-in/bin_echo.o src/built-in/bin_env.o src/built-in/bin_unset.o src/built-in/bin_exit.o src/built-in/bin_pwd.o src/built-in/bin_cd.o src/exec/executor.o src/redir/red_dup.o src/redir/red_heredoc.o src/signal/signal_handlers.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-24 16:05:55.877947
+#  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -353,7 +356,7 @@ minishell: src/lexer/lexer_init.o src/lexer/token_utils.o src/lexer/token_init.o
 src/lexer/token_init.o: src/lexer/token_init.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/lexer/token_init'
-#  Last modified 2022-06-24 16:05:46.5703295
+#  Last modified 2022-07-06 18:02:46.449617
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 69):
@@ -362,7 +365,7 @@ src/lexer/token_init.o: src/lexer/token_init.c
 # Not a target:
 src/lexer/lexer_init.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-24 01:53:58.8207392
+#  Last modified 2022-07-06 18:02:35.109617
 #  File has been updated.
 #  Successfully updated.
 
@@ -384,9 +387,27 @@ src/built-in/bin_pwd.o:
 src/lexer/cmdlist_utils.o: src/lexer/cmdlist_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/lexer/cmdlist_utils'
-#  Last modified 2022-06-24 16:05:46.8998914
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := src/lexer/cmdlist_utils.o
+# automatic
+# % := 
+# automatic
+# * := src/lexer/cmdlist_utils
+# automatic
+# + := src/lexer/cmdlist_utils.c
+# automatic
+# | := 
+# automatic
+# < := src/lexer/cmdlist_utils.c
+# automatic
+# ^ := src/lexer/cmdlist_utils.c
+# automatic
+# ? := src/lexer/cmdlist_utils.c
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/17=12%
 #  recipe to execute (from 'Makefile', line 69):
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
@@ -396,27 +417,17 @@ src/built-in/bin_unset.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-src/parser/pars_quote.o: src/parser/pars_quote.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'src/parser/pars_quote'
-#  Last modified 2022-06-24 16:05:47.0604621
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 69):
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+# Not a target:
+src/parser/pars_quote.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-
-# Not a target:
-src/parser/pars_util.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-06-23 22:26:32.7147988
-#  File has been updated.
-#  Successfully updated.
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
@@ -433,32 +444,11 @@ clean:
 	@$(RM) $(OBJS) $(B_OBJS)
 	@make clean -C $(LIBFT_DIR)
 
-src/parser/pars_child.o: src/parser/pars_child.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'src/parser/pars_child'
-#  Last modified 2022-06-24 16:05:47.565647
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := src/parser/pars_child.o
-# automatic
-# % := 
-# automatic
-# * := src/parser/pars_child
-# automatic
-# + := src/parser/pars_child.c
-# automatic
-# | := 
-# automatic
-# < := src/parser/pars_child.c
-# automatic
-# ^ := src/parser/pars_child.c
-# automatic
-# ? := src/parser/pars_child.c
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/17=12%
-#  recipe to execute (from 'Makefile', line 69):
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+# Not a target:
+src/parser/pars_child.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/env/env_build.o:
@@ -469,7 +459,7 @@ src/env/env_build.o:
 # Not a target:
 src/lexer/token_init.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-18 00:03:49.3531006
+#  Last modified 2022-06-18 08:01:08.249843
 #  File has been updated.
 #  Successfully updated.
 
@@ -488,7 +478,7 @@ src/built-in/bin_cd.o:
 # Not a target:
 src/lexer/cmdlist_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-18 00:03:32.2376071
+#  Last modified 2022-07-06 18:02:35.109617
 #  File has been updated.
 #  Successfully updated.
 
@@ -498,45 +488,35 @@ src/redir/red_heredoc.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-src/parser/pars_quote.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-06-23 22:27:33.8943054
-#  File has been updated.
-#  Successfully updated.
-
 src/lexer/token_utils.o: src/lexer/token_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/lexer/token_utils'
-#  Last modified 2022-06-24 16:05:46.4056237
+#  Last modified 2022-07-06 18:02:46.419617
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 69):
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-src/parser/pars_cmd.o: src/parser/pars_cmd.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'src/parser/pars_cmd'
-#  Last modified 2022-06-24 16:05:47.4030519
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 69):
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+# Not a target:
+src/parser/pars_cmd.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
-# Load=43/1024=4%, Rehash=0, Collisions=0/115=0%
+# Load=39/1024=4%, Rehash=0, Collisions=0/99=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 82 / storage = 1378 B / avg = 16 B
-# current buf: size = 8162 B / used = 1378 B / count = 82 / avg = 16 B
+# strcache buffers: 1 (0) / strings = 65 / storage = 1088 B / avg = 16 B
+# current buf: size = 8162 B / used = 1088 B / count = 65 / avg = 16 B
 
-# strcache performance: lookups = 115 / hit rate = 28%
+# strcache performance: lookups = 89 / hit rate = 26%
 # hash-table stats:
-# Load=82/8192=1%, Rehash=0, Collisions=3/115=3%
-# Finished Make data base on Sat Jun 25 02:56:58 2022
+# Load=65/8192=1%, Rehash=0, Collisions=1/89=1%
+# Finished Make data base on Wed Jul  6 18:03:21 2022
 
  

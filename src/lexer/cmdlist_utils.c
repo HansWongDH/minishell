@@ -72,7 +72,7 @@ char	*add_quote_heredoc(char *s)
 	int		i;
 
 	i = 1;
-	ret = ft_calloc(sizeof(char *), ft_strlen(ret) + 3);
+	ret = ft_calloc(sizeof(char *), ft_strlen(s) + 3);
 	ret[0] = '\'';
 	while (*s)
 	{
